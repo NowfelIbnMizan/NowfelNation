@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NowfelNation|Marketing Consultancy</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <style>
+        /* --- 1. RESET & VARIABLES --- */
+        :root {
+            --bg-color: #050505;
+            --card-bg: #0B0C10;
+            --text-main: #ffffff;
+            --text-muted: #9CA3AF;
+            --accent-green: #C5F82A;
+            --accent-blue: #397BFF;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- UNICORN STUDIO BACKGROUND --- */
+        .unicorn-bg-wrapper {
+            position: fixed; /* Fixed so it stays while scrolling */
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* --- LAYOUT UTILS --- */
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-padding { padding: 6rem 0; }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .section-title span { color: var(--accent-green); }
+        
+        .section-subtitle {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        /* --- NAV --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            position: relative;
+            z-index: 10;
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .logo span { color: var(--accent-green); }
+        .nav-links { display: none; gap: 2.5rem; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-green); }
+        @media (min-width: 768px) { .nav-links { display: flex; } }
+
+        /* --- HERO --- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            padding: 4rem 0 8rem;
+            align-items: center;
+            min-height: 80vh;
+        }
+        @media (min-width: 992px) { .hero { grid-template-columns: 1.2fr 0.8fr; } }
+
+        .eyebrow {
+            color: var(--accent-green);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        h1 { font-size: 3rem; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        h1 span { color: var(--accent-green); }
+        @media (min-width: 768px) { h1 { font-size: 4.5rem; } }
+        
+        .subheadline { color: var(--text-muted); font-size: 1.125rem; line-height: 1.6; max-width: 500px; margin-bottom: 2rem; }
+
+        /* --- BUTTONS (Provided CSS) --- */
+        .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .button-container { position: relative; }
+        .button-border {
+            padding: 3px; inset: 0; background: rgba(0,0,0,0.3); border-radius: inherit;
+            clip-path: path("M 90 0 C 121 0 126 5 126 33 C 126 61 121 66 90 66 L 33 66 C 5 66 0 61 0 33 C 0 5 5 0 33 0 Z");
+        }
+        .button {
+            justify-content: center; align-items: center; border: none; border-radius: 0.875em;
+            clip-path: path("M 90 0 C 115 0 120 5 120 30 C 120 55 115 60 90 60 L 30 60 C 5 60 0 55 0 30 C 0 5 5 0 30 0 Z");
+            width: 120px; height: 60px; background: #111215; display: flex; flex-direction: column; color: #fff; overflow: hidden; font-weight: 600; font-size: 0.9rem;
+        }
+        .real-button { position: absolute; width: 120px; height: 60px; z-index: 5; border: none; cursor: pointer; opacity: 0; }
+        .backdrop { position: absolute; inset: -9900%; background: radial-gradient(circle at 50% 50%, #0000 0, #0000 20%, #111111aa 50%); background-size: 3px 3px; z-index: -1; }
+        .spin { position: absolute; inset: 0; z-index: -2; opacity: 0.5; overflow: hidden; transition: 0.3s; }
+        .real-button:hover ~ div .spin { opacity: 1; }
+        .spin-blur { filter: blur(2em); }
+        .spin-intense { inset: -0.125em; filter: blur(0.25em); border-radius: 0.75em; }
+        .spin-inside { inset: -2px; border-radius: inherit; filter: blur(2px); z-index: 0; }
+        .spin::before { content: ""; position: absolute; inset: -150%; animation: speen 8s cubic-bezier(0.56, 0.15, 0.28, 0.86) infinite, woah 4s infinite; animation-play-state: paused; }
+        .real-button:hover ~ div .spin::before { animation-play-state: running; }
+        .btn-main .spin-blur::before { background: linear-gradient(90deg, rgb(79, 255, 93) 30%, #0000 50%, rgb(57, 123, 255) 70%); }
+        .btn-main .spin-intense::before { background: linear-gradient(90deg, rgb(85, 255, 176) 20%, #0000 45% 55%, #59f 80%); }
+        .btn-main .spin-inside::before { background: linear-gradient(90deg, rgb(34, 231, 16) 30%, #0000 45% 55%, rgb(49, 255, 245) 70%); }
+        .btn-sec .spin-blur::before { background: linear-gradient(90deg, #f50 30%, #0000 50%, #05f 70%); }
+        .btn-sec .spin-intense::before { background: linear-gradient(90deg, #f95 20%, #0000 45% 55%, #59f 80%); }
+        .btn-sec .spin-inside::before { background: linear-gradient(90deg, #fc9 30%, #0000 45% 55%, #9cf 70%); }
+        @keyframes speen { 0% { rotate: 10deg; } 50% { rotate: 190deg; } to { rotate: 370deg; } }
+        @keyframes woah { 0%, to { scale: 1; } 50% { scale: 0.75; } }
+
+        /* --- VISUALS & SOCIAL PROOF --- */
+        .social-proof { margin-top: 2rem; width: 100%; max-width: 450px; overflow: hidden; position: relative; }
+        .social-text { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; display: block; }
+        .marquee-wrapper { display: flex; gap: 2rem; width: max-content; animation: marquee 20s linear infinite; }
+        .social-proof::before, .social-proof::after { content: ''; position: absolute; top: 0; bottom: 0; width: 50px; z-index: 2; pointer-events: none; }
+        .social-proof::before { left: 0; background: linear-gradient(to right, var(--bg-color), transparent); }
+        .social-proof::after { right: 0; background: linear-gradient(to left, var(--bg-color), transparent); }
+        .partner-logo { font-size: 1.8rem; color: #555; transition: color 0.3s; }
+        .partner-logo:hover { color: #fff; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .visual-container { position: relative; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; }
+        .beam-svg { width: 100%; height: 100%; overflow: visible; }
+        .noodle-path { fill: none; stroke: #222; stroke-width: 2; }
+        .noodle-beam { fill: none; stroke: var(--accent-green); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 10 300; stroke-dashoffset: 310; animation: beamTravel 3s ease-in-out infinite; }
+        .noodle-beam:nth-child(2) { animation-delay: 0.5s; stroke: #397BFF; }
+        .noodle-beam:nth-child(3) { animation-delay: 1s; stroke: #f95; }
+        @keyframes beamTravel { to { stroke-dashoffset: -310; } }
+        .sonar-wave { fill: none; stroke: var(--accent-green); stroke-width: 1; opacity: 0; transform-origin: center; animation: sonarPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+        .sonar-wave.delay { animation-delay: 0.6s; }
+        @keyframes sonarPulse { 0% { transform: scale(0.5); opacity: 0; } 50% { opacity: 0.5; } 100% { transform: scale(2); opacity: 0; } }
+        .dec-dot { fill: var(--text-muted); opacity: 0.3; }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; align-items: start; }
+        @media(min-width: 992px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+        
+        .bio-text { color: #ddd; line-height: 1.8; margin-bottom: 2rem; font-size: 1.05rem; }
+        
+        .skills-list { list-style: none; margin-bottom: 2rem; }
+        .skills-list li { margin-bottom: 0.8rem; display: flex; align-items: center; gap: 10px; color: var(--text-muted); }
+        .skills-list li .iconify { color: var(--accent-green); }
+
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+        .tech-tag {
+            background: rgba(255,255,255,0.05);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+        .tech-tag:hover { border-color: var(--accent-green); color: #fff; background: rgba(197, 248, 42, 0.1); }
+
+        .personal-interests { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #222; }
+        .interest-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
+        .interest-item .iconify { font-size: 2rem; color: #fff; }
+
+        /* --- BOOKING/PRICING SECTION --- */
+        .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; margin-bottom: 4rem; }
+        @media(min-width: 768px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            position: relative;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .pricing-card:hover { border-color: var(--accent-green); transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(197, 248, 42, 0.1); }
+        
+        .tier-name { color: var(--accent-green); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; }
+        .price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .tier-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem; flex-grow: 1; }
+        
+        .pricing-features { list-style: none; margin-bottom: 2rem; }
+        .pricing-features li { margin-bottom: 0.8rem; color: #ccc; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        
+        .card-btn {
+            background: rgba(255,255,255,0.1); color: #fff; text-decoration: none; padding: 1rem; border-radius: 0.8rem; text-align: center; font-weight: 600; transition: 0.3s;
+        }
+        .card-btn:hover { background: var(--accent-green); color: #000; }
+
+        /* --- CONTACT FORM --- */
+        .form-wrapper { background: var(--card-bg); padding: 3rem; border-radius: 1.5rem; border: 1px solid #222; max-width: 700px; margin: 0 auto; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
+        .form-input, .form-textarea {
+            width: 100%; background: #050505; border: 1px solid #333; padding: 1rem; border-radius: 0.5rem; color: #fff; font-family: inherit; transition: 0.3s;
+        }
+        .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent-green); }
+        .submit-btn {
+            background: var(--accent-green); color: #000; border: none; padding: 1rem 2rem; font-weight: 700; border-radius: 0.5rem; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .submit-btn:hover { background: #fff; }
+
+        /* --- FOOTER --- */
+        footer { border-top: 1px solid #222; padding: 4rem 0 2rem; margin-top: 4rem; text-align: center; }
+        .footer-logo { margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.5rem; }
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
+        .social-icon { font-size: 1.5rem; color: var(--text-muted); transition: 0.3s; }
+        .social-icon:hover { color: var(--accent-green); transform: translateY(-3px); }
+        .copyright { color: #555; font-size: 0.8rem; }
+
+        /* --- ANIMATION UTILS --- */
+        .scroll-hidden { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: all 0.8s ease-out; }
+        .scroll-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+        
+        /* Intro Stagger */
+        .animate-enter { animation: enterAnim 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+        .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
+        @keyframes enterAnim { 0% { opacity: 0; transform: translateY(20px); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+    </style>
+</head>
+<body>
+
+    <div class="unicorn-bg-wrapper">
+        <div data-us-project="dZWG49EzH9nKRfvQbwdN" style="width:100%; height: 100%"></div>
+    </div>
+
+    <div class="container">
+        <nav class="animate-enter delay-1">
+            <div class="logo">
+                <span class="iconify" data-icon="uis:analysis"></span>
+                NowfelNation
+            </div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="https://calendly.com/nowfel" target="_blank" style="color:var(--accent-green); text-decoration:none; font-weight:700;">Book Meeting &rarr;</a>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-content">
+                <span class="eyebrow animate-enter delay-1">
+                    <span class="iconify" data-icon="uis:rocket"></span>
+                    Next-Gen Consulting
+                </span>
+                
+                <h1 class="animate-enter delay-2">
+                    Coupling AI with <br>
+                    <span>Person-First</span> Intelligence.
+                </h1>
+                
+                <p class="subheadline animate-enter delay-3">
+                    We architect marketing ecosystems that adapt, evolve, and scale. Join the evolution of digital retail media.
+                </p>
+
+                <div class="cta-group animate-enter delay-3">
+                    <div class="button-container btn-main">
+                        <button class="real-button" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"></button>
+                        <div class="button-border">
+                            <div class="button">
+                                Start Now
+                                <div class="backdrop"></div>
+                                <div class="spin spin-blur"></div>
+                                <div class="spin spin-intense"></div>
+                                <div class="spin spin-inside"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="social-proof animate-enter delay-4">
+                    <span class="social-text">Trusted by 50+ Modern Retailers</span>
+                    <div class="marquee-wrapper">
+                        <span class="iconify partner-logo" data-icon="uis:google"></span>
+                        <span class="iconify partner-logo" data-icon="uis:amazon"></span>
+                        <span class="iconify partner-logo" data-icon="uis:linkedin"></span>
+                        <span class="iconify partner-logo" data-icon="uis:microsoft"></span>
+                        <span class="iconify partner-logo" data-icon="uis:snapchat-ghost"></span>
+                        <span class="iconify partner-logo" data-icon="uis:reddit-alien-alt"></span>
+                        <span class="iconify partner-logo" data-icon="uis:google"></span>
+                        <span class="iconify partner-logo" data-icon="uis:amazon"></span>
+                        <span class="iconify partner-logo" data-icon="uis:linkedin"></span>
+                        <span class="iconify partner-logo" data-icon="uis:microsoft"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visual-container animate-enter delay-4">
+                <svg class="beam-svg" viewBox="0 0 400 400">
+                    <circle cx="50" cy="50" r="2" class="dec-dot" />
+                    <circle cx="350" cy="350" r="2" class="dec-dot" />
+                    <circle cx="50" cy="350" r="2" class="dec-dot" />
+                    <circle cx="350" cy="50" r="2" class="dec-dot" />
+
+                    <path d="M 0 100 Q 150 100 250 200" class="noodle-path" />
+                    <path d="M 0 100 Q 150 100 250 200" class="noodle-beam" />
+
+                    <path d="M 0 300 Q 150 300 250 200" class="noodle-path" />
+                    <path d="M 0 300 Q 150 300 250 200" class="noodle-beam" />
+
+                    <path d="M 350 0 Q 350 100 250 200" class="noodle-path" />
+                    <path d="M 350 0 Q 350 100 250 200" class="noodle-beam" />
+
+                    <g transform="translate(250, 200)">
+                        <circle r="20" class="sonar-wave" />
+                        <circle r="20" class="sonar-wave delay" />
+                        <circle r="15" fill="#111" stroke="#C5F82A" stroke-width="2" />
+                        <circle r="5" fill="#C5F82A" />
+                    </g>
+                </svg>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding scroll-hidden">
+            <h2 class="section-title">Meet <span>Nowfel</span></h2>
+            <div class="about-grid">
+                <div>
+                    <p class="bio-text">
+                        Hi, I’m Nowfel. A digital marketer and affiliate program strategist with over five years of experience helping SaaS, eCommerce, and lifestyle brands grow through performance-driven partnerships.
+                    </p>
+                    <ul class="skills-list">
+                        <li><span class="iconify" data-icon="uis:check-circle"></span> Partner Recruitment & Relationship Building</li>
+                        <li><span class="iconify" data-icon="uis:check-circle"></span> Lead Generation & Market Research</li>
+                        <li><span class="iconify" data-icon="uis:check-circle"></span> Program Strategy, Optimization & Reporting</li>
+                        <li><span class="iconify" data-icon="uis:check-circle"></span> Content + Campaign Management</li>
+                        <li><span class="iconify" data-icon="uis:check-circle"></span> Team Development & Cross-Channel Collaboration</li>
+                    </ul>
+                    <a href="https://calendly.com/nowfel" target="_blank" style="color:var(--accent-green); text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
+                        Let's Connect on Calendly and book a session. <span class="iconify" data-icon="uis:arrow-right"></span>
+                    </a>
+                </div>
+                <div>
+                    <div style="margin-bottom: 1rem; color: #fff; font-weight:700; display:flex; align-items:center; gap:0.5rem;">
+                        <span class="iconify" data-icon="uis:wrench" style="color:var(--accent-green);"></span> Tech Stack
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Ahrefs</span>
+                        <span class="tech-tag">SEMrush</span>
+                        <span class="tech-tag">Ubersuggest</span>
+                        <span class="tech-tag">ShareASale</span>
+                        <span class="tech-tag">Affise</span>
+                        <span class="tech-tag">Impact</span>
+                        <span class="tech-tag">UpPromote</span>
+                        <span class="tech-tag">ClickBank</span>
+                        <span class="tech-tag">CJ</span>
+                        <span class="tech-tag">Refersion</span>
+                        <span class="tech-tag">FirstPromoter</span>
+                        <span class="tech-tag">HubSpot</span>
+                        <span class="tech-tag">Canva</span>
+                        <span class="tech-tag">ClickUp</span>
+                        <span class="tech-tag">SalesHandy</span>
+                        <span class="tech-tag">Google Workspace</span>
+                        <span class="tech-tag">Adobe Suite</span>
+                        <span class="tech-tag">TikTok Shop</span>
+                        <span class="tech-tag">ChatGPT</span>
+                        <span class="tech-tag">Sora</span>
+                    </div>
+
+                    <div class="personal-interests">
+                        <div class="interest-item">
+                            <span class="iconify" data-icon="uis:record-audio"></span>
+                            <span>DJing</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="iconify" data-icon="fluent:boxing-glove-24-filled"></span>
+                            <span>Kickboxing</span>
+                        </div>
+                        <div class="interest-item">
+                            <span class="iconify" data-icon="uis:plane-departure"></span>
+                            <span>Traveling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section-padding scroll-hidden">
+            <h2 class="section-title">Consultation <span>Packages</span></h2>
+            <p class="section-subtitle">Tailored strategies for every stage of your business growth. From solo founders to enterprise scale.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="tier-name">The Kickstart</div>
+                    <div class="price">$499 <span>/ session</span></div>
+                    <p class="tier-desc">Perfect for entrepreneurs and early-stage startups needing a strategic roadmap.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Audit of 1 Primary Channel</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Competitor Analysis</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> 60-min Strategy Call</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Actionable PDF Roadmap</li>
+                    </ul>
+                    <a href="#contact" class="card-btn">Book Kickstart</a>
+                </div>
+
+                <div class="pricing-card" style="border-color: var(--accent-green);">
+                    <div class="tier-name">Small Biz Growth</div>
+                    <div class="price">$1,499 <span>/ mo</span></div>
+                    <p class="tier-desc">Ongoing support for small businesses ready to scale their affiliate & partner programs.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Full Stack Setup (Impact/ShareASale)</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Partner Recruitment (50/mo)</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Weekly Optimization</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Bi-weekly Reporting Calls</li>
+                    </ul>
+                    <a href="#contact" class="card-btn" style="background:var(--accent-green); color:#000;">Start Growth</a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="tier-name">Enterprise Scale</div>
+                    <div class="price">$4,500+ <span>/ mo</span></div>
+                    <p class="tier-desc">Fractional CMO services for established brands needing aggressive expansion.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Multi-Channel Strategy</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Team Leadership & Training</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Custom Tech Stack Implementation</li>
+                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> 24/7 Priority Support</li>
+                    </ul>
+                    <a href="#contact" class="card-btn">Contact Sales</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding scroll-hidden">
+            <h2 class="section-title" style="text-align:center;">Let's <span>Talk</span></h2>
+            <div class="form-wrapper">
+                <form action="https://formspree.io/f/nowfelibnmizan@gmail.com" method="POST">
+                    
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-input" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Interested In</label>
+                        <select name="package" class="form-input">
+                            <option value="Entrepreneur">The Kickstart ($499)</option>
+                            <option value="Small Biz">Small Biz Growth ($1,499)</option>
+                            <option value="Enterprise">Enterprise Scale (Custom)</option>
+                            <option value="Other">General Inquiry</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea name="message" class="form-textarea" rows="4" placeholder="Tell me about your business goals..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Inquiry</button>
+                </form>
+            </div>
+        </section>
+        
+        <footer class="scroll-hidden">
+            <div class="footer-logo">
+                <span class="iconify" data-icon="uis:analysis" style="color:var(--accent-green)"></span> NowfelNation
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.instagram.com/godexpress/?hl=en" target="_blank" class="social-icon" title="Instagram">
+                    <span class="iconify" data-icon="uis:instagram"></span>
+                </a>
+                <a href="https://www.facebook.com/Nowfel" target="_blank" class="social-icon" title="Facebook">
+                    <span class="iconify" data-icon="uis:facebook"></span>
+                </a>
+                <a href="https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/" target="_blank" class="social-icon" title="LinkedIn">
+                    <span class="iconify" data-icon="uis:linkedin"></span>
+                </a>
+                <a href="mailto:nowfelibnmizan@gmail.com" class="social-icon" title="Email">
+                    <span class="iconify" data-icon="uis:envelope"></span>
+                </a>
+                <a href="https://wa.me/01622327655" target="_blank" class="social-icon" title="WhatsApp">
+                    <span class="iconify" data-icon="uis:whatsapp"></span>
+                </a>
+            </div>
+            
+            <p class="copyright">&copy; 2024 NowfelNation. All Rights Reserved.</p>
+        </footer>
+
+    </div>
+
+    <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-hidden').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
