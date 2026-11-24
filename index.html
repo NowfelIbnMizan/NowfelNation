@@ -203,15 +203,6 @@
         @keyframes woah { 0%, to { scale: 1; } 50% { scale: 0.75; } }
 
         /* --- VISUALS & SOCIAL PROOF --- */
-        .social-proof { margin-top: 2rem; width: 100%; max-width: 450px; overflow: hidden; position: relative; }
-        .social-text { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.8rem; display: block; }
-        .marquee-wrapper { display: flex; gap: 2rem; width: max-content; animation: marquee 20s linear infinite; }
-        .social-proof::before, .social-proof::after { content: ''; position: absolute; top: 0; bottom: 0; width: 50px; z-index: 2; pointer-events: none; }
-        .social-proof::before { left: 0; background: linear-gradient(to right, var(--bg-color), transparent); }
-        .social-proof::after { right: 0; background: linear-gradient(to left, var(--bg-color), transparent); }
-        .partner-logo { font-size: 1.8rem; color: #6B6B6B; transition: color 0.3s; }
-        .partner-logo:hover { color: #fff; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         .visual-container { position: relative; height: 100%; min-height: 260px; display: flex; align-items: center; justify-content: center; }
         @media (min-width: 992px) { .visual-container { min-height: 400px; } }
@@ -331,7 +322,6 @@
             html { scroll-behavior: auto; }
             *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
             .js .scroll-hidden { opacity: 1; transform: none; filter: none; }
-            .marquee-wrapper { animation: none; }
         }
     </style>
 </head>
@@ -389,21 +379,6 @@
                     </div>
                 </div>
 
-                <div class="social-proof animate-enter delay-4">
-                    <span class="social-text">Trusted by 50+ Modern Retailers</span>
-                    <div class="marquee-wrapper" aria-hidden="true">
-                        <span class="iconify partner-logo" data-icon="uis:google"></span>
-                        <span class="iconify partner-logo" data-icon="uis:amazon"></span>
-                        <span class="iconify partner-logo" data-icon="uis:linkedin"></span>
-                        <span class="iconify partner-logo" data-icon="uis:microsoft"></span>
-                        <span class="iconify partner-logo" data-icon="uis:snapchat-ghost"></span>
-                        <span class="iconify partner-logo" data-icon="uis:reddit-alien-alt"></span>
-                        <span class="iconify partner-logo" data-icon="uis:google"></span>
-                        <span class="iconify partner-logo" data-icon="uis:amazon"></span>
-                        <span class="iconify partner-logo" data-icon="uis:linkedin"></span>
-                        <span class="iconify partner-logo" data-icon="uis:microsoft"></span>
-                    </div>
-                </div>
             </div>
 
             <div class="visual-container animate-enter delay-4">
@@ -437,7 +412,7 @@
             <div class="about-grid">
                 <div>
                     <p class="bio-text">
-                        Hi, I’m Nowfel. A digital marketer and affiliate program strategist with over five years of experience helping SaaS, eCommerce, and lifestyle brands grow through performance-driven partnerships.
+                        Hi, I’m Nowfel. A digital marketer and affiliate program strategist with over six years of experience helping SaaS, eCommerce, and lifestyle brands grow through performance-driven partnerships.
                     </p>
                     <ul class="skills-list">
                         <li><span class="iconify" data-icon="uis:check-circle"></span> Partner Recruitment & Relationship Building</li>
