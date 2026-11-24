@@ -3,13 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NowfelNation|Marketing Consultancy</title>
-    
+    <title>NowfelNation | Affiliate &amp; Partner Marketing Consultancy by Nowfel Ibn Mizan</title>
+    <meta name="description" content="NowfelNation is the affiliate and partner marketing consultancy of Nowfel Ibn Mizan. Program strategy, partner recruitment, lead generation and reporting for SaaS, eCommerce and lifestyle brands.">
+    <meta name="author" content="Nowfel Ibn Mizan">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#050505">
+    <link rel="canonical" href="https://nowfel.dev/">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    <!-- Open Graph / social previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="NowfelNation">
+    <meta property="og:url" content="https://nowfel.dev/">
+    <meta property="og:title" content="NowfelNation | Affiliate &amp; Partner Marketing Consultancy">
+    <meta property="og:description" content="Affiliate program strategy, partner recruitment and performance reporting for SaaS, eCommerce and lifestyle brands.">
+    <meta property="og:image" content="https://nowfel.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="NowfelNation | Affiliate &amp; Partner Marketing Consultancy">
+    <meta name="twitter:description" content="Affiliate program strategy, partner recruitment and performance reporting for SaaS, eCommerce and lifestyle brands.">
+    <meta name="twitter:image" content="https://nowfel.dev/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nowfel.dev/#business",
+          "name": "NowfelNation",
+          "url": "https://nowfel.dev/",
+          "image": "https://nowfel.dev/og-image.png",
+          "description": "Affiliate and partner marketing consultancy: program strategy, partner recruitment, lead generation and reporting.",
+          "founder": { "@id": "https://nowfel.dev/#nowfel" },
+          "email": "mailto:nowfelibnmizan@gmail.com",
+          "priceRange": "$499 - $4,500+",
+          "areaServed": "Worldwide"
+        },
+        {
+          "@type": "Person",
+          "@id": "https://nowfel.dev/#nowfel",
+          "name": "Nowfel Ibn Mizan",
+          "jobTitle": "Affiliate & Partner Marketing Consultant",
+          "url": "https://nowfel.dev/",
+          "sameAs": [
+            "https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/",
+            "https://www.facebook.com/Nowfel",
+            "https://www.instagram.com/godexpress/"
+          ]
+        }
+      ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://api.iconify.design" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <!-- Icons: deferred so they never block first paint -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
+    <!-- Mark JS as available so scroll animations only hide content when they can reveal it -->
+    <script>document.documentElement.classList.add('js');</script>
 
     <style>
         /* --- 1. RESET & VARIABLES --- */
@@ -47,10 +104,12 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1.25rem;
         }
+        @media (min-width: 768px) { .container { padding: 0 2rem; } }
         
-        .section-padding { padding: 6rem 0; }
+        .section-padding { padding: 4rem 0; }
+        @media (min-width: 768px) { .section-padding { padding: 6rem 0; } }
         
         .section-title {
             font-size: 2.5rem;
@@ -77,10 +136,12 @@
         }
         .logo { font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .logo span { color: var(--accent-green); }
-        .nav-links { display: none; gap: 2.5rem; }
+        nav { flex-wrap: wrap; row-gap: 1rem; }
+        .nav-links { display: flex; gap: 1.5rem; order: 3; width: 100%; }
+        .nav-cta { color: var(--accent-green); text-decoration: none; font-weight: 700; }
         .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-green); }
-        @media (min-width: 768px) { .nav-links { display: flex; } }
+        @media (min-width: 768px) { .nav-links { gap: 2.5rem; order: 0; width: auto; } }
 
         /* --- HERO --- */
         .hero {
@@ -92,6 +153,7 @@
             min-height: 80vh;
         }
         @media (min-width: 992px) { .hero { grid-template-columns: 1.2fr 0.8fr; } }
+        .hero > * { min-width: 0; }
 
         .eyebrow {
             color: var(--accent-green);
@@ -119,6 +181,7 @@
         .button {
             justify-content: center; align-items: center; border: none; border-radius: 0.875em;
             clip-path: path("M 90 0 C 115 0 120 5 120 30 C 120 55 115 60 90 60 L 30 60 C 5 60 0 55 0 30 C 0 5 5 0 30 0 Z");
+            position: relative; /* keeps the decorative .backdrop inside the button (it was making the page ~12,000px wide on phones) */
             width: 120px; height: 60px; background: #111215; display: flex; flex-direction: column; color: #fff; overflow: hidden; font-weight: 600; font-size: 0.9rem;
         }
         .real-button { position: absolute; width: 120px; height: 60px; z-index: 5; border: none; cursor: pointer; opacity: 0; }
@@ -146,12 +209,13 @@
         .social-proof::before, .social-proof::after { content: ''; position: absolute; top: 0; bottom: 0; width: 50px; z-index: 2; pointer-events: none; }
         .social-proof::before { left: 0; background: linear-gradient(to right, var(--bg-color), transparent); }
         .social-proof::after { right: 0; background: linear-gradient(to left, var(--bg-color), transparent); }
-        .partner-logo { font-size: 1.8rem; color: #555; transition: color 0.3s; }
+        .partner-logo { font-size: 1.8rem; color: #6B6B6B; transition: color 0.3s; }
         .partner-logo:hover { color: #fff; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .visual-container { position: relative; height: 100%; min-height: 400px; display: flex; align-items: center; justify-content: center; }
-        .beam-svg { width: 100%; height: 100%; overflow: visible; }
+        .visual-container { position: relative; height: 100%; min-height: 260px; display: flex; align-items: center; justify-content: center; }
+        @media (min-width: 992px) { .visual-container { min-height: 400px; } }
+        .beam-svg { width: 100%; height: 100%; max-height: 400px; overflow: visible; }
         .noodle-path { fill: none; stroke: #222; stroke-width: 2; }
         .noodle-beam { fill: none; stroke: var(--accent-green); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 10 300; stroke-dashoffset: 310; animation: beamTravel 3s ease-in-out infinite; }
         .noodle-beam:nth-child(2) { animation-delay: 0.5s; stroke: #397BFF; }
@@ -184,7 +248,7 @@
         }
         .tech-tag:hover { border-color: var(--accent-green); color: #fff; background: rgba(197, 248, 42, 0.1); }
 
-        .personal-interests { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #222; }
+        .personal-interests { display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #222; }
         .interest-item { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
         .interest-item .iconify { font-size: 2rem; color: #fff; }
 
@@ -196,7 +260,7 @@
             background: var(--card-bg);
             border: 1px solid #222;
             border-radius: 1.5rem;
-            padding: 2.5rem;
+            padding: 2rem 1.5rem;
             position: relative;
             transition: 0.3s;
             display: flex;
@@ -204,6 +268,7 @@
         }
         .pricing-card:hover { border-color: var(--accent-green); transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(197, 248, 42, 0.1); }
         
+        @media (min-width: 768px) { .pricing-card { padding: 2.5rem; } }
         .tier-name { color: var(--accent-green); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 1px; }
         .price { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
         .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
@@ -218,11 +283,12 @@
         .card-btn:hover { background: var(--accent-green); color: #000; }
 
         /* --- CONTACT FORM --- */
-        .form-wrapper { background: var(--card-bg); padding: 3rem; border-radius: 1.5rem; border: 1px solid #222; max-width: 700px; margin: 0 auto; }
+        .form-wrapper { background: var(--card-bg); padding: 1.5rem; border-radius: 1.5rem; border: 1px solid #222; max-width: 700px; margin: 0 auto; }
+        @media (min-width: 768px) { .form-wrapper { padding: 3rem; } }
         .form-group { margin-bottom: 1.5rem; }
         .form-label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
         .form-input, .form-textarea {
-            width: 100%; background: #050505; border: 1px solid #333; padding: 1rem; border-radius: 0.5rem; color: #fff; font-family: inherit; transition: 0.3s;
+            width: 100%; background: #050505; border: 1px solid #333; padding: 1rem; border-radius: 0.5rem; color: #fff; font-family: inherit; font-size: 1rem; transition: 0.3s;
         }
         .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent-green); }
         .submit-btn {
@@ -233,30 +299,51 @@
         /* --- FOOTER --- */
         footer { border-top: 1px solid #222; padding: 4rem 0 2rem; margin-top: 4rem; text-align: center; }
         .footer-logo { margin-bottom: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.5rem; }
-        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; }
-        .social-icon { font-size: 1.5rem; color: var(--text-muted); transition: 0.3s; }
+        .social-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .social-icon { font-size: 1.5rem; color: var(--text-muted); transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; }
         .social-icon:hover { color: var(--accent-green); transform: translateY(-3px); }
-        .copyright { color: #555; font-size: 0.8rem; }
+        .copyright { color: #8B8B8B; font-size: 0.8rem; }
 
         /* --- ANIMATION UTILS --- */
-        .scroll-hidden { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: all 0.8s ease-out; }
-        .scroll-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+        .js .scroll-hidden { opacity: 0; transform: translateY(30px); filter: blur(5px); transition: all 0.8s ease-out; }
+        .js .scroll-hidden.scroll-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
         
         /* Intro Stagger */
         .animate-enter { animation: enterAnim 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
         .delay-1 { animation-delay: 0.1s; } .delay-2 { animation-delay: 0.2s; } .delay-3 { animation-delay: 0.3s; } .delay-4 { animation-delay: 0.4s; }
         @keyframes enterAnim { 0% { opacity: 0; transform: translateY(20px); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
+        /* --- ICON PLACEHOLDERS (no layout jump while icons load) --- */
+        .iconify { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; }
+
+        /* --- ACCESSIBILITY --- */
+        .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+        a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--accent-green); outline-offset: 3px; border-radius: 4px;
+        }
+        .real-button:focus-visible { opacity: 1; background: transparent; outline: 2px solid var(--accent-green); outline-offset: 2px; border-radius: 1rem; }
+        .real-button:focus-visible ~ div .spin { opacity: 1; }
+        .form-status { margin-top: 1rem; font-size: 0.95rem; min-height: 1.4em; }
+        .form-status.ok { color: var(--accent-green); }
+        .form-status.err { color: #FF8A8A; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            .js .scroll-hidden { opacity: 1; transform: none; filter: none; }
+            .marquee-wrapper { animation: none; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="unicorn-bg-wrapper">
+    <div class="unicorn-bg-wrapper" aria-hidden="true">
         <div data-us-project="dZWG49EzH9nKRfvQbwdN" style="width:100%; height: 100%"></div>
     </div>
 
     <div class="container">
-        <nav class="animate-enter delay-1">
+        <header>
+        <nav class="animate-enter delay-1" aria-label="Main">
             <div class="logo">
                 <span class="iconify" data-icon="uis:analysis"></span>
                 NowfelNation
@@ -266,9 +353,11 @@
                 <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="https://calendly.com/nowfel" target="_blank" style="color:var(--accent-green); text-decoration:none; font-weight:700;">Book Meeting &rarr;</a>
+            <a href="https://calendly.com/nowfel" target="_blank" rel="noopener" class="nav-cta">Book Meeting &rarr;</a>
         </nav>
+        </header>
 
+        <main>
         <section class="hero">
             <div class="hero-content">
                 <span class="eyebrow animate-enter delay-1">
@@ -287,8 +376,8 @@
 
                 <div class="cta-group animate-enter delay-3">
                     <div class="button-container btn-main">
-                        <button class="real-button" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})"></button>
-                        <div class="button-border">
+                        <button type="button" class="real-button" aria-label="Start now: see consultation packages" onclick="document.getElementById('services').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})"></button>
+                        <div class="button-border" aria-hidden="true">
                             <div class="button">
                                 Start Now
                                 <div class="backdrop"></div>
@@ -302,7 +391,7 @@
 
                 <div class="social-proof animate-enter delay-4">
                     <span class="social-text">Trusted by 50+ Modern Retailers</span>
-                    <div class="marquee-wrapper">
+                    <div class="marquee-wrapper" aria-hidden="true">
                         <span class="iconify partner-logo" data-icon="uis:google"></span>
                         <span class="iconify partner-logo" data-icon="uis:amazon"></span>
                         <span class="iconify partner-logo" data-icon="uis:linkedin"></span>
@@ -318,7 +407,7 @@
             </div>
 
             <div class="visual-container animate-enter delay-4">
-                <svg class="beam-svg" viewBox="0 0 400 400">
+                <svg class="beam-svg" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
                     <circle cx="50" cy="50" r="2" class="dec-dot" />
                     <circle cx="350" cy="350" r="2" class="dec-dot" />
                     <circle cx="50" cy="350" r="2" class="dec-dot" />
@@ -357,7 +446,7 @@
                         <li><span class="iconify" data-icon="uis:check-circle"></span> Content + Campaign Management</li>
                         <li><span class="iconify" data-icon="uis:check-circle"></span> Team Development & Cross-Channel Collaboration</li>
                     </ul>
-                    <a href="https://calendly.com/nowfel" target="_blank" style="color:var(--accent-green); text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
+                    <a href="https://calendly.com/nowfel" target="_blank" rel="noopener" style="color:var(--accent-green); text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
                         Let's Connect on Calendly and book a session. <span class="iconify" data-icon="uis:arrow-right"></span>
                     </a>
                 </div>
@@ -458,28 +547,28 @@
                 <form action="https://formspree.io/f/nowfelibnmizan@gmail.com" method="POST">
                     
                     <div class="form-group">
-                        <label class="form-label">Name</label>
-                        <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+                        <label class="form-label" for="f-name">Name</label>
+                        <input type="text" id="f-name" name="name" autocomplete="name" class="form-input" placeholder="John Doe" required>
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-input" placeholder="john@example.com" required>
+                        <label class="form-label" for="f-email">Email</label>
+                        <input type="email" id="f-email" name="email" autocomplete="email" class="form-input" placeholder="john@example.com" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Interested In</label>
-                        <select name="package" class="form-input">
+                        <label class="form-label" for="f-package">Interested In</label>
+                        <select id="f-package" name="package" class="form-input">
                             <option value="Entrepreneur">The Kickstart ($499)</option>
                             <option value="Small Biz">Small Biz Growth ($1,499)</option>
-                            <option value="Enterprise">Enterprise Scale (Custom)</option>
+                            <option value="Enterprise">Enterprise Scale ($4,500+)</option>
                             <option value="Other">General Inquiry</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Message</label>
-                        <textarea name="message" class="form-textarea" rows="4" placeholder="Tell me about your business goals..."></textarea>
+                        <label class="form-label" for="f-message">Message</label>
+                        <textarea id="f-message" name="message" class="form-textarea" rows="4" placeholder="Tell me about your business goals..."></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">Send Inquiry</button>
@@ -487,35 +576,54 @@
             </div>
         </section>
         
+        </main>
+
         <footer class="scroll-hidden">
             <div class="footer-logo">
                 <span class="iconify" data-icon="uis:analysis" style="color:var(--accent-green)"></span> NowfelNation
             </div>
             
             <div class="social-links">
-                <a href="https://www.instagram.com/godexpress/?hl=en" target="_blank" class="social-icon" title="Instagram">
+                <a href="https://www.instagram.com/godexpress/?hl=en" target="_blank" rel="noopener" class="social-icon" title="Instagram" aria-label="Instagram">
                     <span class="iconify" data-icon="uis:instagram"></span>
                 </a>
-                <a href="https://www.facebook.com/Nowfel" target="_blank" class="social-icon" title="Facebook">
+                <a href="https://www.facebook.com/Nowfel" target="_blank" rel="noopener" class="social-icon" title="Facebook" aria-label="Facebook">
                     <span class="iconify" data-icon="uis:facebook"></span>
                 </a>
-                <a href="https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/" target="_blank" class="social-icon" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
                     <span class="iconify" data-icon="uis:linkedin"></span>
                 </a>
-                <a href="mailto:nowfelibnmizan@gmail.com" class="social-icon" title="Email">
+                <a href="mailto:nowfelibnmizan@gmail.com" class="social-icon" title="Email" aria-label="Email">
                     <span class="iconify" data-icon="uis:envelope"></span>
                 </a>
-                <a href="https://wa.me/01622327655" target="_blank" class="social-icon" title="WhatsApp">
+                <a href="https://wa.me/8801622327655" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" aria-label="WhatsApp">
                     <span class="iconify" data-icon="uis:whatsapp"></span>
                 </a>
             </div>
             
-            <p class="copyright">&copy; 2024 NowfelNation. All Rights Reserved.</p>
+            <p class="copyright">&copy; <span id="year">2025</span> NowfelNation. All Rights Reserved.</p>
         </footer>
 
     </div>
 
-    <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+    <script>
+        // Animated background: load only after the page is ready, and skip it for reduced-motion or data-saver users
+        (function () {
+            var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var saveData = navigator.connection && navigator.connection.saveData;
+            if (reduce || saveData || window.UnicornStudio) return;
+            function loadUnicorn() {
+                window.UnicornStudio = { isInitialized: false };
+                var i = document.createElement('script');
+                i.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js';
+                i.async = true;
+                i.onload = function () { if (!UnicornStudio.isInitialized) { UnicornStudio.init(); UnicornStudio.isInitialized = true; } };
+                document.body.appendChild(i);
+            }
+            function idle() { ('requestIdleCallback' in window) ? requestIdleCallback(loadUnicorn, { timeout: 2000 }) : setTimeout(loadUnicorn, 800); }
+            if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle);
+        })();
+    </script>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
@@ -527,6 +635,7 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.scroll-hidden').forEach((el) => observer.observe(el));
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
