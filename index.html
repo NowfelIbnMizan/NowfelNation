@@ -66,11 +66,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.iconify.design" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icons: deferred so they never block first paint -->
-    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js" defer></script>
     <!-- Mark JS as available so scroll animations only hide content when they can reveal it -->
     <script>document.documentElement.classList.add('js');</script>
 
@@ -97,14 +94,14 @@
             min-height: 100vh;
         }
 
-        /* --- UNICORN STUDIO BACKGROUND --- */
-        .unicorn-bg-wrapper {
-            position: fixed; /* Fixed so it stays while scrolling */
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            opacity: 0.4;
-            pointer-events: none;
-        }
+        /* --- BACKGROUND: soft drifting glows (pure CSS, no third-party script) --- */
+        .bg-glow { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+        .bg-glow::before, .bg-glow::after { content: ""; position: absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(90px); opacity: 0.16; }
+        .bg-glow::before { background: var(--accent-green); top: -25vmax; right: -15vmax; animation: drift1 26s ease-in-out infinite alternate; }
+        .bg-glow::after { background: #397BFF; bottom: -30vmax; left: -20vmax; opacity: 0.14; animation: drift2 32s ease-in-out infinite alternate; }
+        .bg-grid { position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%); }
+        @keyframes drift1 { to { transform: translate(-12vmax, 14vmax) scale(1.1); } }
+        @keyframes drift2 { to { transform: translate(14vmax, -10vmax) scale(1.15); } }
 
         /* --- LAYOUT UTILS --- */
         .container {
@@ -430,7 +427,9 @@
         @keyframes enterAnim { 0% { opacity: 0; transform: translateY(20px); filter: blur(10px); } 100% { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
         /* --- ICON PLACEHOLDERS (no layout jump while icons load) --- */
-        .iconify { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; }
+        .iconify { display: inline-block; width: 1em; height: 1em; flex-shrink: 0; vertical-align: -0.125em; }
+        .ic { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .interest-item .ic { stroke-width: 1.6; }
 
         /* --- ACCESSIBILITY --- */
         .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -451,10 +450,32 @@
     </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.2Z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/></symbol>
+  <symbol id="i-glove" viewBox="0 0 24 24"><path d="M5 11a7 7 0 0 1 7-7h1.5A5.5 5.5 0 0 1 19 9.5v3a4.5 4.5 0 0 1-4.5 4.5H9a4 4 0 0 1-4-4Z"/><path d="M5 12.5c2.5 0 5-.5 6-2.5"/><path d="M8 17v3.5h9v-4"/><path d="M8 19h9"/></symbol>
+  <symbol id="i-gamepad" viewBox="0 0 24 24"><path d="M6 11h4"/><path d="M8 9v4"/><path d="M15 12h.01"/><path d="M18 10h.01"/><path d="M17.32 5H6.68a4 4 0 0 0-3.98 3.59C2.6 9.42 2 14.46 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.41-1.41A2 2 0 0 1 9.83 16h4.34a2 2 0 0 1 1.41.59L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.55-.6-6.58-.69-7.26A4 4 0 0 0 17.32 5Z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 12h20"/><path d="M2 7h5"/><path d="M2 17h5"/><path d="M17 17h5"/><path d="M17 7h5"/></symbol>
+  <symbol id="i-cat" viewBox="0 0 24 24"><path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+  <symbol id="i-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M9 10.5c.5 1.5 1.5 2.5 3 3l1-1 2 1v1.5c-3 .5-7-3-7-7H9.5l1 2Z"/></symbol>
+</svg>
 
-    <div class="unicorn-bg-wrapper" aria-hidden="true">
-        <div data-us-project="dZWG49EzH9nKRfvQbwdN" style="width:100%; height: 100%"></div>
-    </div>
+    <div class="bg-glow" aria-hidden="true"><div class="bg-grid"></div></div>
 
     <div class="container">
         <header>
@@ -478,7 +499,7 @@
         <section class="hero">
             <div class="hero-content">
                 <span class="eyebrow animate-enter delay-1">
-                    <span class="iconify" data-icon="uis:rocket"></span>
+                    <svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-spark"/></svg>
                     Affiliate &amp; Partnerships Manager
                 </span>
 
@@ -512,7 +533,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="btn-ghost"><span class="iconify" data-icon="uis:file-download-alt"></span> Download CV</a>
+                    <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="btn-ghost"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Download CV</a>
                     <a href="#services" class="btn-ghost">Hire me as a consultant</a>
                 </div>
             </div>
@@ -574,10 +595,10 @@
                         Outside the day job I build things. Using AI as my coding partner, I've designed and shipped a travel comparison site, a prayer-times app, a movie picker for friends and a handful of browser games. It makes me faster at the technical side of marketing too: tracking, landing pages and tools.
                     </p>
                     <ul class="fact-list">
-                        <li><span class="iconify" data-icon="uis:map-marker"></span><div>Based in Dhaka, Bangladesh</div></li>
-                        <li><span class="iconify" data-icon="uis:graduation-cap"></span><div>BBA, Marketing<small>North South University, Bangladesh · 2021</small></div></li>
-                        <li><span class="iconify" data-icon="uis:comment-alt-message"></span><div>Bengali (native), English (fluent, IELTS 7.5), Hindi (spoken)</div></li>
-                        <li><span class="iconify" data-icon="uis:briefcase"></span><div>Affiliate Partnerships Manager at Truely Travel eSIM<small>Since May 2025</small></div></li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><div>Based in Dhaka, Bangladesh</div></li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-cap"/></svg><div>BBA, Marketing<small>North South University, Bangladesh · 2021</small></div></li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-globe"/></svg><div>Bengali (native), English (fluent, IELTS 7.5), Hindi (spoken)</div></li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-briefcase"/></svg><div>Affiliate Partnerships Manager at Truely Travel eSIM<small>Since May 2025</small></div></li>
                     </ul>
                 </div>
                 <div>
@@ -601,10 +622,10 @@
                     </div>
 
                     <div class="personal-interests">
-                        <div class="interest-item"><span class="iconify" data-icon="uis:record-audio"></span><span>DJing</span></div>
-                        <div class="interest-item"><span class="iconify" data-icon="fluent:boxing-glove-24-filled"></span><span>Kickboxing</span></div>
-                        <div class="interest-item"><span class="iconify" data-icon="uis:plane-departure"></span><span>Traveling</span></div>
-                        <div class="interest-item"><span class="iconify" data-icon="mdi:gamepad-variant"></span><span>Gaming</span></div>
+                        <div class="interest-item"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-headphones"/></svg><span>DJing</span></div>
+                        <div class="interest-item"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-glove"/></svg><span>Kickboxing</span></div>
+                        <div class="interest-item"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-plane"/></svg><span>Traveling</span></div>
+                        <div class="interest-item"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-gamepad"/></svg><span>Gaming</span></div>
                     </div>
                 </div>
             </div>
@@ -649,7 +670,7 @@
                     </ul>
                 </li>
             </ol>
-            <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="card-btn cv-cta"><span class="iconify" data-icon="uis:file-download-alt"></span> Download full CV (PDF)</a>
+            <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="card-btn cv-cta"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Download full CV (PDF)</a>
         </section>
 
         <section id="projects" class="section-padding scroll-hidden">
@@ -665,7 +686,7 @@
 
             <div class="project-grid">
                 <article class="project" data-kind="web">
-                    <div class="thumb" style="background:linear-gradient(135deg,#0f766e,#1e3a8a);"><span class="iconify" data-icon="uis:map-marker"></span><span class="thumb-label">creatour.co</span><span class="status">Live</span></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#0f766e,#1e3a8a);"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-pin"/></svg><span class="thumb-label">creatour.co</span><span class="status">Live</span></div>
                     <div class="project-body">
                         <div class="kind">Website · Founder</div>
                         <h3>Creatour</h3>
@@ -676,7 +697,7 @@
                 </article>
 
                 <article class="project" data-kind="app">
-                    <div class="thumb" style="background:linear-gradient(135deg,#1e1b4b,#b45309);"><span class="iconify" data-icon="mdi:moon-waning-crescent"></span><span class="thumb-label">PWA</span><span class="status">Live</span></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#1e1b4b,#b45309);"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg><span class="thumb-label">PWA</span><span class="status">Live</span></div>
                     <div class="project-body">
                         <div class="kind">App · Installable web app</div>
                         <h3>Qamar by Nowfel</h3>
@@ -687,7 +708,7 @@
                 </article>
 
                 <article class="project" data-kind="app">
-                    <div class="thumb" style="background:linear-gradient(135deg,#450a0a,#111);"><span class="iconify" data-icon="mdi:movie-open"></span><span class="thumb-label">Web app</span><span class="status">Live</span></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#450a0a,#111);"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-film"/></svg><span class="thumb-label">Web app</span><span class="status">Live</span></div>
                     <div class="project-body">
                         <div class="kind">App · Movie night picker</div>
                         <h3>Tonight's Nightmare</h3>
@@ -698,7 +719,7 @@
                 </article>
 
                 <article class="project" data-kind="app">
-                    <div class="thumb" style="background:linear-gradient(135deg,#334155,#0f172a);"><span class="iconify" data-icon="uis:file-alt"></span><span class="thumb-label">Web app</span><span class="status soon">Coming soon</span></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#334155,#0f172a);"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-file"/></svg><span class="thumb-label">Web app</span><span class="status soon">Coming soon</span></div>
                     <div class="project-body">
                         <div class="kind">App · Career tool</div>
                         <h3>Nowfel's CV Maker</h3>
@@ -709,7 +730,7 @@
                 </article>
 
                 <article class="project" data-kind="game">
-                    <div class="thumb" style="background:linear-gradient(135deg,#be185d,#f59e0b);"><span class="iconify" data-icon="mdi:cat"></span><span class="thumb-label">Browser game</span><span class="status">Live</span></div>
+                    <div class="thumb" style="background:linear-gradient(135deg,#be185d,#f59e0b);"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-cat"/></svg><span class="thumb-label">Browser game</span><span class="status">Live</span></div>
                     <div class="project-body">
                         <div class="kind">Game · Virtual pet</div>
                         <h3>Neko Pocket</h3>
@@ -734,13 +755,13 @@
                     <div class="price">From €2,800 <span>/ month</span></div>
                     <p class="tier-desc">I run your affiliate program day to day as your dedicated affiliate manager.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Partner recruitment and personal outreach</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Onboarding, activation and regular partner contact</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Offer, commission and creative updates</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> KPI tracking and data-driven optimisation</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Biweekly or monthly performance reports</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Partner recruitment and personal outreach</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Onboarding, activation and regular partner contact</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Offer, commission and creative updates</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> KPI tracking and data-driven optimisation</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Biweekly or monthly performance reports</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Ongoing monthly retainer</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Ongoing monthly retainer</div>
                     <a href="#contact" class="card-btn" data-package="Program Management" style="background:var(--accent-green); color:#000;">Start Management</a>
                 </article>
                 <article class="pricing-card">
@@ -749,13 +770,13 @@
                     <div class="price">€2,600</div>
                     <p class="tier-desc">A full review of an existing program, with a clear plan for what to fix first.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Commission structure and payout review</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Partner-by-partner performance analysis</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> KPI benchmarks against industry norms</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Tracking, attribution and platform check</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Written report and prioritised action plan</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Commission structure and payout review</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Partner-by-partner performance analysis</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> KPI benchmarks against industry norms</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Tracking, attribution and platform check</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Written report and prioritised action plan</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Delivered in about 2 weeks</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Delivered in about 2 weeks</div>
                     <a href="#contact" class="card-btn" data-package="Program Audit">Book an Audit</a>
                 </article>
                 <article class="pricing-card">
@@ -764,13 +785,13 @@
                     <div class="price">€2,750</div>
                     <p class="tier-desc">Everything needed to launch a new affiliate program the right way.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Program strategy, offer and commission plan</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Platform setup (Impact, ShareASale, UpPromote and others)</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Marketplace profile and affiliate creative brief</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Affiliate agreement and terms templates</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Recruitment plan and launch support</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Program strategy, offer and commission plan</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Platform setup (Impact, ShareASale, UpPromote and others)</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Marketplace profile and affiliate creative brief</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Affiliate agreement and terms templates</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Recruitment plan and launch support</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Launch in about 3–4 weeks</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Launch in about 3–4 weeks</div>
                     <a href="#contact" class="card-btn" data-package="Setup & Launch">Launch a Program</a>
                 </article>
                 <article class="pricing-card">
@@ -779,13 +800,13 @@
                     <div class="price">€3,000</div>
                     <p class="tier-desc">A focused push to find and sign the right partners for your brand.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Ideal partner profile by channel</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Researched prospect list with contacts</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Outreach sequences and messaging</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Partner pitch deck and onboarding flow</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Handover playbook for your team</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Ideal partner profile by channel</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Researched prospect list with contacts</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Outreach sequences and messaging</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Partner pitch deck and onboarding flow</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Handover playbook for your team</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> About 4 weeks</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> About 4 weeks</div>
                     <a href="#contact" class="card-btn" data-package="Recruitment Strategy">Plan Recruitment</a>
                 </article>
                 <article class="pricing-card">
@@ -794,13 +815,13 @@
                     <div class="price">€2,500</div>
                     <p class="tier-desc">Matching your brand with creators whose audience fits your customers.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Creator research, vetting and outreach</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Campaign brief, goals and key messages</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Deal and contract negotiation</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Content review before it goes live</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Reach, engagement and conversion report</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Creator research, vetting and outreach</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Campaign brief, goals and key messages</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Deal and contract negotiation</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Content review before it goes live</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Reach, engagement and conversion report</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> One campaign, about 6 weeks</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> One campaign, about 6 weeks</div>
                     <a href="#contact" class="card-btn" data-package="Influencer Partnerships">Start a Campaign</a>
                 </article>
                 <article class="pricing-card">
@@ -809,13 +830,13 @@
                     <div class="price">€2,300</div>
                     <p class="tier-desc">More revenue from customers you already have.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Abandoned checkout and lead recovery review</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Upsell and cross-sell opportunities</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Lifecycle email and automation check</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Customer segmentation recommendations</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Tailored retention plan</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Abandoned checkout and lead recovery review</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Upsell and cross-sell opportunities</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Lifecycle email and automation check</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Customer segmentation recommendations</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Tailored retention plan</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Delivered in about 2 weeks</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Delivered in about 2 weeks</div>
                     <a href="#contact" class="card-btn" data-package="Retention Audit">Book a Retention Audit</a>
                 </article>
                 <article class="pricing-card">
@@ -824,11 +845,11 @@
                     <div class="price">€250 <span>/ hour</span></div>
                     <p class="tier-desc">One focused session on your program, your numbers and your next steps.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Program or idea review before the call</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Live strategy session</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Written summary of actions after the call</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Program or idea review before the call</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Live strategy session</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Written summary of actions after the call</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> 60-minute video call</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> 60-minute video call</div>
                     <a href="#contact" class="card-btn" data-package="Consultation">Book a Session</a>
                 </article>
                 <article class="pricing-card">
@@ -837,12 +858,12 @@
                     <div class="price">Custom</div>
                     <p class="tier-desc">Training for your in-house team, from first program to advanced optimisation.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check"></span> Beginner, intermediate and advanced levels</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Recruitment, outreach and partner management</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Tracking, reporting and fraud prevention</li>
-                        <li><span class="iconify" data-icon="uis:check"></span> Built around your program and tools</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Beginner, intermediate and advanced levels</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Recruitment, outreach and partner management</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Tracking, reporting and fraud prevention</li>
+                        <li><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Built around your program and tools</li>
                     </ul>
-                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Format and length tailored to your team</div>
+                    <div class="meta-line"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg> Format and length tailored to your team</div>
                     <a href="#contact" class="card-btn" data-package="Training">Get a Quote</a>
                 </article>
             </div>
@@ -864,9 +885,9 @@
             <h2 class="section-title">Industries I <span>know</span></h2>
             <p class="section-subtitle">Hands-on experience running programs in these markets.</p>
             <div class="industry-grid">
-                <div class="industry"><span class="iconify" data-icon="uis:window-grid"></span><h3>SaaS</h3><p>Recurring commissions, trial-to-paid tracking, and partners like reviewers, consultants and integration partners.</p><p class="proof">Dux-Soup · REsimpli · iFax</p></div>
-                <div class="industry"><span class="iconify" data-icon="uis:shopping-cart"></span><h3>eCommerce &amp; DTC</h3><p>Content creators, coupon and deal sites, and influencer partnerships for product brands.</p><p class="proof">Teabloom · The Hair Diagram</p></div>
-                <div class="industry"><span class="iconify" data-icon="uis:plane-departure"></span><h3>Travel tech</h3><p>Travel bloggers, comparison sites and creator partnerships for travel products and eSIMs.</p><p class="proof">Truely</p></div>
+                <div class="industry"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-cloud"/></svg><h3>SaaS</h3><p>Recurring commissions, trial-to-paid tracking, and partners like reviewers, consultants and integration partners.</p><p class="proof">Dux-Soup · REsimpli · iFax</p></div>
+                <div class="industry"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-cart"/></svg><h3>eCommerce &amp; DTC</h3><p>Content creators, coupon and deal sites, and influencer partnerships for product brands.</p><p class="proof">Teabloom · The Hair Diagram</p></div>
+                <div class="industry"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-plane"/></svg><h3>Travel tech</h3><p>Travel bloggers, comparison sites and creator partnerships for travel products and eSIMs.</p><p class="proof">Truely</p></div>
             </div>
         </section>
 
@@ -886,9 +907,9 @@
             <h2 class="section-title" style="text-align:center;">Let's <span>Talk</span></h2>
             <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">Hiring for an affiliate or partnerships role, or need help with your program? Send a message or reach me directly.</p>
             <div class="contact-alt">
-                <a href="mailto:nowfelibnmizan@gmail.com"><span class="iconify" data-icon="uis:envelope"></span> nowfelibnmizan@gmail.com</a>
-                <a href="https://www.linkedin.com/in/nowfelibnmizan" target="_blank" rel="noopener"><span class="iconify" data-icon="uis:linkedin"></span> LinkedIn</a>
-                <a href="/Nowfel-Ibn-Mizan-CV.pdf" download><span class="iconify" data-icon="uis:file-download-alt"></span> Download CV</a>
+                <a href="mailto:nowfelibnmizan@gmail.com"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg> nowfelibnmizan@gmail.com</a>
+                <a href="https://www.linkedin.com/in/nowfelibnmizan" target="_blank" rel="noopener"><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-linkedin"/></svg> LinkedIn</a>
+                <a href="/Nowfel-Ibn-Mizan-CV.pdf" download><svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-download"/></svg> Download CV</a>
             </div>
             <div class="form-wrapper">
                 <form id="contact-form" action="mailto:nowfelibnmizan@gmail.com" method="POST" data-endpoint="">
@@ -939,16 +960,16 @@
             
             <div class="social-links">
                 <a href="https://www.facebook.com/Nowfel" target="_blank" rel="noopener" class="social-icon" title="Facebook" aria-label="Facebook">
-                    <span class="iconify" data-icon="uis:facebook"></span>
+                    <svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-facebook"/></svg>
                 </a>
                 <a href="https://www.linkedin.com/in/nowfelibnmizan" target="_blank" rel="noopener" class="social-icon" title="LinkedIn" aria-label="LinkedIn">
-                    <span class="iconify" data-icon="uis:linkedin"></span>
+                    <svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-linkedin"/></svg>
                 </a>
                 <a href="mailto:nowfelibnmizan@gmail.com" class="social-icon" title="Email" aria-label="Email">
-                    <span class="iconify" data-icon="uis:envelope"></span>
+                    <svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-mail"/></svg>
                 </a>
                 <a href="https://wa.me/8801622327655" target="_blank" rel="noopener" class="social-icon" title="WhatsApp" aria-label="WhatsApp">
-                    <span class="iconify" data-icon="uis:whatsapp"></span>
+                    <svg class="iconify ic" aria-hidden="true" focusable="false"><use href="#i-chat"/></svg>
                 </a>
             </div>
             
@@ -957,24 +978,6 @@
 
     </div>
 
-    <script>
-        // Animated background: load only after the page is ready, and skip it for reduced-motion or data-saver users
-        (function () {
-            var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var saveData = navigator.connection && navigator.connection.saveData;
-            if (reduce || saveData || window.UnicornStudio) return;
-            function loadUnicorn() {
-                window.UnicornStudio = { isInitialized: false };
-                var i = document.createElement('script');
-                i.src = 'https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.5.2/dist/unicornStudio.umd.js';
-                i.async = true;
-                i.onload = function () { if (!UnicornStudio.isInitialized) { UnicornStudio.init(); UnicornStudio.isInitialized = true; } };
-                document.body.appendChild(i);
-            }
-            function idle() { ('requestIdleCallback' in window) ? requestIdleCallback(loadUnicorn, { timeout: 2000 }) : setTimeout(loadUnicorn, 800); }
-            if (document.readyState === 'complete') idle(); else window.addEventListener('load', idle);
-        })();
-    </script>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
