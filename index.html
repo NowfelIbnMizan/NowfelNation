@@ -39,7 +39,7 @@
           "description": "Affiliate and partner marketing consultancy: program strategy, partner recruitment, lead generation and reporting.",
           "founder": { "@id": "https://nowfel.dev/#nowfel" },
           "email": "mailto:nowfelibnmizan@gmail.com",
-          "priceRange": "$499 - $4,500+",
+          "priceRange": "€250 - €3,000+",
           "areaServed": "Worldwide"
         },
         {
@@ -273,6 +273,53 @@
         }
         .card-btn:hover { background: var(--accent-green); color: #000; }
 
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+        @media(min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width: 1100px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+        .pricing-card.featured { border-color: var(--accent-green); }
+        .services-grid .tier-desc { flex-grow: 0; margin-bottom: 1.5rem; }
+        .services-grid .pricing-features { flex-grow: 1; }
+        .badge { display: inline-block; align-self: flex-start; margin-bottom: 0.75rem; background: var(--accent-green); color: #000; font-size: 0.72rem; font-weight: 800; padding: 0.25rem 0.6rem; border-radius: 50px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .price { font-size: 2.1rem; }
+        .meta-line { display: flex; align-items: center; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; padding-top: 1rem; border-top: 1px solid #222; }
+        .pricing-features li { align-items: flex-start; line-height: 1.45; }
+        .pricing-features li .iconify { color: var(--accent-green); margin-top: 0.2em; }
+        .note { color: var(--text-muted); font-size: 0.85rem; }
+
+        /* --- CLIENTS --- */
+        .clients { padding: 2rem 0 1rem; border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; text-align: center; }
+        .clients-label { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1.25rem; display: block; }
+        .client-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 2.5rem; list-style: none; padding-bottom: 1rem; }
+        .client-list li { font-size: 1.35rem; font-weight: 800; color: #d4d4d4; letter-spacing: -0.01em; }
+        .client-list li small { display: block; font-size: 0.72rem; font-weight: 500; color: var(--text-muted); letter-spacing: 0.02em; }
+
+        /* --- PROCESS --- */
+        .steps { display: grid; grid-template-columns: 1fr; gap: 1.5rem; list-style: none; counter-reset: step; }
+        @media(min-width: 768px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width: 1100px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+        .step { background: var(--card-bg); border: 1px solid #222; border-radius: 1.25rem; padding: 1.75rem; counter-increment: step; }
+        .step::before { content: "0" counter(step); display: block; color: var(--accent-green); font-weight: 800; font-size: 0.9rem; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+        .step h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+        .step p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+
+        /* --- INDUSTRIES --- */
+        .industry-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media(min-width: 768px) { .industry-grid { grid-template-columns: repeat(3, 1fr); } }
+        .industry { border: 1px solid #222; border-radius: 1.25rem; padding: 1.75rem; background: rgba(255,255,255,0.02); }
+        .industry .iconify { font-size: 1.8rem; color: var(--accent-green); margin-bottom: 1rem; }
+        .industry h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .industry p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; }
+        .industry .proof { margin-top: 1rem; font-size: 0.85rem; color: #d4d4d4; }
+
+        /* --- FAQ --- */
+        .faq { max-width: 820px; }
+        .faq details { border-bottom: 1px solid #222; }
+        .faq summary { cursor: pointer; list-style: none; padding: 1.25rem 2.5rem 1.25rem 0; font-weight: 600; font-size: 1.05rem; position: relative; }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after { content: "+"; position: absolute; right: 0.25rem; top: 1.05rem; color: var(--accent-green); font-size: 1.5rem; font-weight: 400; transition: transform 0.2s; }
+        .faq details[open] summary::after { transform: rotate(45deg); }
+        .faq details p { color: var(--text-muted); line-height: 1.7; padding: 0 0 1.25rem; }
+
         /* --- CONTACT FORM --- */
         .form-wrapper { background: var(--card-bg); padding: 1.5rem; border-radius: 1.5rem; border: 1px solid #222; max-width: 700px; margin: 0 auto; }
         @media (min-width: 768px) { .form-wrapper { padding: 3rem; } }
@@ -341,6 +388,8 @@
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
+                <a href="#process">Process</a>
+                <a href="#faq">FAQ</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="https://calendly.com/nowfel" target="_blank" rel="noopener" class="nav-cta">Book Meeting &rarr;</a>
@@ -361,12 +410,12 @@
                 </h1>
                 
                 <p class="subheadline animate-enter delay-3">
-                    We architect marketing ecosystems that adapt, evolve, and scale. Join the evolution of digital retail media.
+                    Affiliate and partner programs, set up, audited and run by a hands-on manager with 6+ years across SaaS, eCommerce and travel tech.
                 </p>
 
                 <div class="cta-group animate-enter delay-3">
                     <div class="button-container btn-main">
-                        <button type="button" class="real-button" aria-label="Start now: see consultation packages" onclick="document.getElementById('services').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})"></button>
+                        <button type="button" class="real-button" aria-label="Start now: see services and pricing" onclick="document.getElementById('services').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})"></button>
                         <div class="button-border" aria-hidden="true">
                             <div class="button">
                                 Start Now
@@ -405,6 +454,16 @@
                     </g>
                 </svg>
             </div>
+        </section>
+
+        <section class="clients" aria-labelledby="clients-label">
+            <span class="clients-label" id="clients-label">Affiliate programs I've managed</span>
+            <ul class="client-list">
+                <li>Dux-Soup<small>SaaS · LinkedIn automation</small></li>
+                <li>RESimpli<small>SaaS · Real estate CRM</small></li>
+                <li>Teabloom<small>eCommerce · Tea</small></li>
+                <li>Truely<small>Travel tech · eSIM</small></li>
+            </ul>
         </section>
 
         <section id="about" class="section-padding scroll-hidden">
@@ -471,48 +530,161 @@
         </section>
 
         <section id="services" class="section-padding scroll-hidden">
-            <h2 class="section-title">Consultation <span>Packages</span></h2>
-            <p class="section-subtitle">Tailored strategies for every stage of your business growth. From solo founders to enterprise scale.</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="tier-name">The Kickstart</div>
-                    <div class="price">$499 <span>/ session</span></div>
-                    <p class="tier-desc">Perfect for entrepreneurs and early-stage startups needing a strategic roadmap.</p>
-                    <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Audit of 1 Primary Channel</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Competitor Analysis</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> 60-min Strategy Call</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Actionable PDF Roadmap</li>
-                    </ul>
-                    <a href="#contact" class="card-btn">Book Kickstart</a>
-                </div>
+            <h2 class="section-title">Services <span>&amp; Pricing</span></h2>
+            <p class="section-subtitle">Clear scope, clear price. Pick a one-off project or hand over the whole program. You work with me directly, with no hand-offs to juniors.</p>
 
-                <div class="pricing-card" style="border-color: var(--accent-green);">
-                    <div class="tier-name">Small Biz Growth</div>
-                    <div class="price">$1,499 <span>/ mo</span></div>
-                    <p class="tier-desc">Ongoing support for small businesses ready to scale their affiliate & partner programs.</p>
+            <div class="services-grid">
+                <article class="pricing-card featured">
+                    <span class="badge">Most popular</span>
+                    <h3 class="tier-name">Program Management</h3>
+                    <div class="price">From €2,800 <span>/ month</span></div>
+                    <p class="tier-desc">I run your affiliate program day to day as your dedicated affiliate manager.</p>
                     <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Full Stack Setup (Impact/ShareASale)</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Partner Recruitment (50/mo)</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Weekly Optimization</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Bi-weekly Reporting Calls</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Partner recruitment and personal outreach</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Onboarding, activation and regular partner contact</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Offer, commission and creative updates</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> KPI tracking and data-driven optimisation</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Biweekly or monthly performance reports</li>
                     </ul>
-                    <a href="#contact" class="card-btn" style="background:var(--accent-green); color:#000;">Start Growth</a>
-                </div>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Ongoing monthly retainer</div>
+                    <a href="#contact" class="card-btn" data-package="Program Management" style="background:var(--accent-green); color:#000;">Start Management</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Program Audit</h3>
+                    <div class="price">€2,600</div>
+                    <p class="tier-desc">A full review of an existing program, with a clear plan for what to fix first.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Commission structure and payout review</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Partner-by-partner performance analysis</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> KPI benchmarks against industry norms</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Tracking, attribution and platform check</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Written report and prioritised action plan</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Delivered in about 2 weeks</div>
+                    <a href="#contact" class="card-btn" data-package="Program Audit">Book an Audit</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Setup &amp; Launch</h3>
+                    <div class="price">€2,750</div>
+                    <p class="tier-desc">Everything needed to launch a new affiliate program the right way.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Program strategy, offer and commission plan</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Platform setup (Impact, ShareASale, UpPromote and others)</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Marketplace profile and affiliate creative brief</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Affiliate agreement and terms templates</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Recruitment plan and launch support</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Launch in about 3–4 weeks</div>
+                    <a href="#contact" class="card-btn" data-package="Setup & Launch">Launch a Program</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Recruitment Strategy</h3>
+                    <div class="price">€3,000</div>
+                    <p class="tier-desc">A focused push to find and sign the right partners for your brand.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Ideal partner profile by channel</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Researched prospect list with contacts</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Outreach sequences and messaging</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Partner pitch deck and onboarding flow</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Handover playbook for your team</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> About 4 weeks</div>
+                    <a href="#contact" class="card-btn" data-package="Recruitment Strategy">Plan Recruitment</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Influencer Partnerships</h3>
+                    <div class="price">€2,500</div>
+                    <p class="tier-desc">Matching your brand with creators whose audience fits your customers.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Creator research, vetting and outreach</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Campaign brief, goals and key messages</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Deal and contract negotiation</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Content review before it goes live</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Reach, engagement and conversion report</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> One campaign, about 6 weeks</div>
+                    <a href="#contact" class="card-btn" data-package="Influencer Partnerships">Start a Campaign</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Retention Audit</h3>
+                    <div class="price">€2,300</div>
+                    <p class="tier-desc">More revenue from customers you already have.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Abandoned checkout and lead recovery review</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Upsell and cross-sell opportunities</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Lifecycle email and automation check</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Customer segmentation recommendations</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Tailored retention plan</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Delivered in about 2 weeks</div>
+                    <a href="#contact" class="card-btn" data-package="Retention Audit">Book a Retention Audit</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Strategy Consultation</h3>
+                    <div class="price">€250 <span>/ hour</span></div>
+                    <p class="tier-desc">One focused session on your program, your numbers and your next steps.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Program or idea review before the call</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Live strategy session</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Written summary of actions after the call</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> 60-minute video call</div>
+                    <a href="#contact" class="card-btn" data-package="Consultation">Book a Session</a>
+                </article>
+                <article class="pricing-card">
+                    
+                    <h3 class="tier-name">Affiliate Manager Training</h3>
+                    <div class="price">Custom</div>
+                    <p class="tier-desc">Training for your in-house team, from first program to advanced optimisation.</p>
+                    <ul class="pricing-features">
+                        <li><span class="iconify" data-icon="uis:check"></span> Beginner, intermediate and advanced levels</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Recruitment, outreach and partner management</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Tracking, reporting and fraud prevention</li>
+                        <li><span class="iconify" data-icon="uis:check"></span> Built around your program and tools</li>
+                    </ul>
+                    <div class="meta-line"><span class="iconify" data-icon="uis:clock"></span> Format and length tailored to your team</div>
+                    <a href="#contact" class="card-btn" data-package="Training">Get a Quote</a>
+                </article>
+            </div>
+            <p class="note">Prices in EUR, excluding VAT where applicable. Larger programs or multiple brands: <a href="#contact" style="color:var(--accent-green);">ask for a custom quote</a>.</p>
+        </section>
 
-                <div class="pricing-card">
-                    <div class="tier-name">Enterprise Scale</div>
-                    <div class="price">$4,500+ <span>/ mo</span></div>
-                    <p class="tier-desc">Fractional CMO services for established brands needing aggressive expansion.</p>
-                    <ul class="pricing-features">
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Multi-Channel Strategy</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Team Leadership & Training</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> Custom Tech Stack Implementation</li>
-                        <li><span class="iconify" data-icon="uis:check" style="color:var(--accent-green)"></span> 24/7 Priority Support</li>
-                    </ul>
-                    <a href="#contact" class="card-btn">Contact Sales</a>
-                </div>
+        <section id="process" class="section-padding scroll-hidden">
+            <h2 class="section-title">How it <span>works</span></h2>
+            <p class="section-subtitle">The same four steps whether you are launching a new program or fixing an old one.</p>
+            <ol class="steps">
+                <li class="step"><h3>Intro call</h3><p>We talk through your product, margins, current program and goals, and decide which service fits.</p></li>
+                <li class="step"><h3>Audit &amp; plan</h3><p>I review your setup, competitors and partner landscape, then share a written plan with priorities and targets.</p></li>
+                <li class="step"><h3>Build &amp; recruit</h3><p>Platform, offer, creatives and terms get set up, and partner outreach starts.</p></li>
+                <li class="step"><h3>Optimise &amp; report</h3><p>Regular reports, clear next steps, and steady work on the partners and offers that drive revenue.</p></li>
+            </ol>
+        </section>
+
+        <section id="industries" class="section-padding scroll-hidden">
+            <h2 class="section-title">Industries I <span>know</span></h2>
+            <p class="section-subtitle">Hands-on experience running programs in these markets.</p>
+            <div class="industry-grid">
+                <div class="industry"><span class="iconify" data-icon="uis:window-grid"></span><h3>SaaS</h3><p>Recurring commissions, trial-to-paid tracking, and partners like reviewers, consultants and integration partners.</p><p class="proof">Dux-Soup · RESimpli</p></div>
+                <div class="industry"><span class="iconify" data-icon="uis:shopping-cart"></span><h3>eCommerce &amp; DTC</h3><p>Content creators, coupon and deal sites, and influencer partnerships for product brands.</p><p class="proof">Teabloom</p></div>
+                <div class="industry"><span class="iconify" data-icon="uis:plane-departure"></span><h3>Travel tech</h3><p>Travel bloggers, comparison sites and creator partnerships for travel products and eSIMs.</p><p class="proof">Truely</p></div>
+            </div>
+        </section>
+
+        <section id="faq" class="section-padding scroll-hidden">
+            <h2 class="section-title">Common <span>questions</span></h2>
+            <div class="faq">
+                <details><summary>Which affiliate platforms do you work with?</summary><p>Impact, ShareASale, CJ, UpPromote, Refersion, FirstPromoter, Affise and ClickBank, among others. If you have not chosen one yet, I will recommend the best fit for your budget and model.</p></details>
+                <details><summary>Do I need an existing affiliate program?</summary><p>No. Setup &amp; Launch builds one from scratch. If you already have a program, start with the Program Audit or go straight to Program Management.</p></details>
+                <details><summary>Who will I actually work with?</summary><p>Me, directly. I handle strategy, outreach and reporting myself, so you always know who is responsible for your program.</p></details>
+                <details><summary>How soon will I see results?</summary><p>New partners usually join in the first weeks of outreach. Steady affiliate revenue normally takes a few months to build, depending on your offer, commission and market.</p></details>
+                <details><summary>How do reports work?</summary><p>You get a biweekly or monthly report covering clicks, conversions, revenue, top partners and the next actions, plus a call to go through it.</p></details>
+                <details><summary>How do I pay?</summary><p>Prices are in EUR. One-off projects are invoiced before work starts; management is invoiced monthly.</p></details>
             </div>
         </section>
 
@@ -534,10 +706,15 @@
                     <div class="form-group">
                         <label class="form-label" for="f-package">Interested In</label>
                         <select id="f-package" name="package" class="form-input">
-                            <option value="Entrepreneur">The Kickstart ($499)</option>
-                            <option value="Small Biz">Small Biz Growth ($1,499)</option>
-                            <option value="Enterprise">Enterprise Scale ($4,500+)</option>
-                            <option value="Other">General Inquiry</option>
+                            <option value="Program Management">Program Management (from €2,800/mo)</option>
+                            <option value="Program Audit">Program Audit (€2,600)</option>
+                            <option value="Setup &amp; Launch">Setup &amp; Launch (€2,750)</option>
+                            <option value="Recruitment Strategy">Recruitment Strategy (€3,000)</option>
+                            <option value="Influencer Partnerships">Influencer Partnerships (€2,500)</option>
+                            <option value="Retention Audit">Retention Audit (€2,300)</option>
+                            <option value="Consultation">Strategy Consultation (€250/hr)</option>
+                            <option value="Training">Affiliate Manager Training (custom)</option>
+                            <option value="Other">General inquiry</option>
                         </select>
                     </div>
 
@@ -611,6 +788,9 @@
 
         document.querySelectorAll('.scroll-hidden').forEach((el) => observer.observe(el));
         document.getElementById('year').textContent = new Date().getFullYear();
+        document.querySelectorAll('[data-package]').forEach((a) => a.addEventListener('click', () => {
+            document.getElementById('f-package').value = a.dataset.package;
+        }));
     </script>
 </body>
 </html>
