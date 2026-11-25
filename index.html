@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NowfelNation | Affiliate &amp; Partner Marketing Consultancy by Nowfel Ibn Mizan</title>
-    <meta name="description" content="NowfelNation is the affiliate and partner marketing consultancy of Nowfel Ibn Mizan. Program strategy, partner recruitment, lead generation and reporting for SaaS, eCommerce and lifestyle brands.">
+    <title>Nowfel Ibn Mizan | Affiliate &amp; Partnerships Manager and Vibe-Coder</title>
+    <meta name="description" content="Nowfel Ibn Mizan: affiliate and partnerships manager with 6+ years growing programs for SaaS and eCommerce brands, and a vibe-coder who builds websites, apps and games. Portfolio, CV and consulting services.">
     <meta name="author" content="Nowfel Ibn Mizan">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#050505">
@@ -13,17 +13,19 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
     <!-- Open Graph / social previews -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="NowfelNation">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="Nowfel Ibn Mizan">
     <meta property="og:url" content="https://nowfel.dev/">
-    <meta property="og:title" content="NowfelNation | Affiliate &amp; Partner Marketing Consultancy">
-    <meta property="og:description" content="Affiliate program strategy, partner recruitment and performance reporting for SaaS, eCommerce and lifestyle brands.">
+    <meta property="og:title" content="Nowfel Ibn Mizan | Affiliate &amp; Partnerships Manager and Vibe-Coder">
+    <meta property="og:description" content="6+ years growing affiliate programs for SaaS and eCommerce brands. Also builds websites, apps and games with AI. Portfolio, CV and services.">
     <meta property="og:image" content="https://nowfel.dev/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="profile:first_name" content="Nowfel">
+    <meta property="profile:last_name" content="Ibn Mizan">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="NowfelNation | Affiliate &amp; Partner Marketing Consultancy">
-    <meta name="twitter:description" content="Affiliate program strategy, partner recruitment and performance reporting for SaaS, eCommerce and lifestyle brands.">
+    <meta name="twitter:title" content="Nowfel Ibn Mizan | Affiliate &amp; Partnerships Manager and Vibe-Coder">
+    <meta name="twitter:description" content="6+ years growing affiliate programs for SaaS and eCommerce brands. Also builds websites, apps and games with AI.">
     <meta name="twitter:image" content="https://nowfel.dev/og-image.png">
 
     <script type="application/ld+json">
@@ -31,28 +33,32 @@
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "ProfessionalService",
-          "@id": "https://nowfel.dev/#business",
-          "name": "NowfelNation",
-          "url": "https://nowfel.dev/",
-          "image": "https://nowfel.dev/og-image.png",
-          "description": "Affiliate and partner marketing consultancy: program strategy, partner recruitment, lead generation and reporting.",
-          "founder": { "@id": "https://nowfel.dev/#nowfel" },
-          "email": "mailto:nowfelibnmizan@gmail.com",
-          "priceRange": "€250 - €3,000+",
-          "areaServed": "Worldwide"
-        },
-        {
           "@type": "Person",
           "@id": "https://nowfel.dev/#nowfel",
           "name": "Nowfel Ibn Mizan",
-          "jobTitle": "Affiliate & Partner Marketing Consultant",
+          "jobTitle": "Affiliate Partnerships Manager",
           "url": "https://nowfel.dev/",
+          "image": "https://nowfel.dev/og-image.png",
+          "email": "mailto:nowfelibnmizan@gmail.com",
+          "worksFor": { "@type": "Organization", "name": "Truely Travel eSIM" },
+          "alumniOf": { "@type": "CollegeOrUniversity", "name": "North South University" },
+          "knowsLanguage": ["Bengali", "English", "Hindi"],
+          "knowsAbout": ["Affiliate marketing", "Partner recruitment", "Lead generation", "Affiliate program management", "Influencer partnerships", "Web development with AI"],
           "sameAs": [
             "https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/",
             "https://www.facebook.com/Nowfel",
             "https://www.instagram.com/godexpress/"
           ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nowfel.dev/#services",
+          "name": "Nowfel Ibn Mizan: Affiliate Program Consulting",
+          "url": "https://nowfel.dev/#services",
+          "provider": { "@id": "https://nowfel.dev/#nowfel" },
+          "description": "Affiliate program management, audits, setup and launch, partner recruitment, influencer partnerships and training.",
+          "priceRange": "€250 - €3,000+",
+          "areaServed": "Worldwide"
         }
       ]
     }
@@ -134,10 +140,14 @@
             position: relative;
             z-index: 10;
         }
-        .logo { font-weight: 800; font-size: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .logo { font-weight: 800; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; color: #fff; text-decoration: none; }
+        @media (min-width: 768px) { .logo { font-size: 1.4rem; } }
+        .logo-mark { color: var(--accent-green); }
         .logo span { color: var(--accent-green); }
         nav { flex-wrap: wrap; row-gap: 1rem; }
-        .nav-links { display: flex; gap: 1.5rem; order: 3; width: 100%; }
+        .nav-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.1rem; order: 3; width: 100%; }
+        .nav-links a { font-size: 0.9rem; padding: 0.35rem 0; }
+        @media (min-width: 768px) { .nav-links a { font-size: 0.95rem; padding: 0; } }
         .nav-cta { color: var(--accent-green); text-decoration: none; font-weight: 700; }
         .nav-links a { color: var(--text-main); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent-green); }
@@ -320,6 +330,74 @@
         .faq details[open] summary::after { transform: rotate(45deg); }
         .faq details p { color: var(--text-muted); line-height: 1.7; padding: 0 0 1.25rem; }
 
+        /* --- HERO EXTRAS --- */
+        .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+        .btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; height: 60px; padding: 0 1.5rem; border-radius: 0.875rem; border: 1px solid #333; color: #fff; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        .btn-ghost:hover { border-color: var(--accent-green); color: var(--accent-green); }
+        .role-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .role-tag { font-size: 0.8rem; font-weight: 600; padding: 0.35rem 0.8rem; border-radius: 50px; border: 1px solid #2a2a2a; color: #d4d4d4; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 0 0 3rem; list-style: none; }
+        @media(min-width: 900px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+        .stat { border: 1px solid #1f1f1f; border-radius: 1rem; padding: 1.25rem; background: rgba(255,255,255,0.02); }
+        .stat strong { display: block; font-size: 1.9rem; font-weight: 800; color: var(--accent-green); letter-spacing: -0.02em; }
+        .stat span { color: var(--text-muted); font-size: 0.88rem; line-height: 1.45; display: block; margin-top: 0.25rem; }
+
+        /* --- ABOUT EXTRAS --- */
+        .fact-list { list-style: none; display: grid; gap: 1rem; margin-top: 2rem; }
+        .fact-list li { display: flex; gap: 0.75rem; color: #d4d4d4; line-height: 1.5; }
+        .fact-list li .iconify { color: var(--accent-green); font-size: 1.2rem; margin-top: 0.1em; }
+        .fact-list small { display: block; color: var(--text-muted); font-size: 0.85rem; }
+        .skill-group { margin-bottom: 1.5rem; }
+        .skill-group h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.75rem; font-weight: 700; }
+
+        /* --- EXPERIENCE --- */
+        .timeline { list-style: none; position: relative; max-width: 900px; }
+        .timeline::before { content: ""; position: absolute; left: 7px; top: 0.5rem; bottom: 0.5rem; width: 2px; background: #1f1f1f; }
+        .job { position: relative; padding: 0 0 2.5rem 2.5rem; }
+        .job::before { content: ""; position: absolute; left: 0; top: 0.4rem; width: 16px; height: 16px; border-radius: 50%; background: var(--bg-color); border: 2px solid var(--accent-green); }
+        .job-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; margin-bottom: 0.5rem; }
+        .job h3 { font-size: 1.2rem; }
+        .job .company { color: var(--accent-green); font-weight: 600; }
+        .job time { color: var(--text-muted); font-size: 0.9rem; white-space: nowrap; }
+        .job ul { list-style: none; display: grid; gap: 0.6rem; margin-top: 0.75rem; }
+        .job li { color: var(--text-muted); line-height: 1.6; padding-left: 1.1rem; position: relative; }
+        .job li::before { content: ""; position: absolute; left: 0; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: #444; }
+        .job li b { color: #e5e5e5; font-weight: 600; }
+        .cv-cta { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; }
+
+        /* --- PROJECTS --- */
+        .filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+        .filter-btn { background: transparent; border: 1px solid #2a2a2a; color: #d4d4d4; padding: 0.55rem 1.1rem; border-radius: 50px; font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: 0.2s; min-height: 44px; }
+        .filter-btn:hover { border-color: #555; }
+        .filter-btn[aria-pressed="true"] { background: var(--accent-green); border-color: var(--accent-green); color: #000; }
+        .project-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        @media(min-width: 700px) { .project-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(min-width: 1100px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+        .project { background: var(--card-bg); border: 1px solid #222; border-radius: 1.25rem; overflow: hidden; display: flex; flex-direction: column; transition: border-color 0.3s, transform 0.3s; }
+        .project:hover { border-color: #3a3a3a; transform: translateY(-3px); }
+        .project[hidden] { display: none; }
+        .thumb { aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; position: relative; }
+        .thumb .iconify { font-size: 3.2rem; color: rgba(255,255,255,0.92); }
+        .thumb-label { position: absolute; left: 1rem; bottom: 0.8rem; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
+        .status { position: absolute; top: 0.8rem; right: 0.8rem; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.6rem; border-radius: 50px; background: rgba(0,0,0,0.55); color: #fff; display: inline-flex; align-items: center; gap: 0.35rem; }
+        .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-green); }
+        .status.dev::before { background: #f5a524; }
+        .status.soon::before { background: #9CA3AF; }
+        .project-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .project h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
+        .project .kind { color: var(--accent-green); font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.75rem; }
+        .project p { color: var(--text-muted); line-height: 1.6; font-size: 0.95rem; flex-grow: 1; }
+        .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0; }
+        .chip { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 50px; background: rgba(255,255,255,0.06); color: #bdbdbd; }
+        .project-link { color: var(--accent-green); font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; }
+        .project-link:hover { text-decoration: underline; }
+        .project-link.muted { color: var(--text-muted); font-weight: 600; }
+        .builder-note { margin-top: 2rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; max-width: 760px; }
+
+        .contact-alt { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem 1.5rem; margin: -1.5rem 0 2rem; }
+        .contact-alt a { color: #d4d4d4; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; }
+        .contact-alt a:hover { color: var(--accent-green); }
+
         /* --- CONTACT FORM --- */
         .form-wrapper { background: var(--card-bg); padding: 1.5rem; border-radius: 1.5rem; border: 1px solid #222; max-width: 700px; margin: 0 auto; }
         @media (min-width: 768px) { .form-wrapper { padding: 3rem; } }
@@ -381,53 +459,62 @@
     <div class="container">
         <header>
         <nav class="animate-enter delay-1" aria-label="Main">
-            <div class="logo">
-                <span class="iconify" data-icon="uis:analysis"></span>
-                NowfelNation
-            </div>
+            <a href="#top" class="logo" aria-label="Nowfel Ibn Mizan, home">
+                <span class="logo-mark" aria-hidden="true">&#9679;</span>
+                Nowfel Ibn Mizan
+            </a>
             <div class="nav-links">
                 <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
                 <a href="#services">Services</a>
-                <a href="#process">Process</a>
-                <a href="#faq">FAQ</a>
                 <a href="#contact">Contact</a>
             </div>
-            <a href="https://calendly.com/nowfel" target="_blank" rel="noopener" class="nav-cta">Book Meeting &rarr;</a>
+            <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="nav-cta">Download CV &darr;</a>
         </nav>
         </header>
 
-        <main>
+        <main id="top">
         <section class="hero">
             <div class="hero-content">
                 <span class="eyebrow animate-enter delay-1">
                     <span class="iconify" data-icon="uis:rocket"></span>
-                    Next-Gen Consulting
+                    Affiliate &amp; Partnerships Manager
                 </span>
-                
+
                 <h1 class="animate-enter delay-2">
-                    Coupling AI with <br>
-                    <span>Person-First</span> Intelligence.
+                    I grow <span>affiliate programs</span> and build apps &amp; games.
                 </h1>
-                
+
                 <p class="subheadline animate-enter delay-3">
-                    Affiliate and partner programs, set up, audited and run by a hands-on manager with 6+ years across SaaS, eCommerce and travel tech.
+                    I'm Nowfel Ibn Mizan. For 6+ years I've recruited partners and scaled affiliate revenue for SaaS and eCommerce brands. I'm also a vibe-coder: I design and ship websites, apps and games with AI.
                 </p>
 
-                <div class="cta-group animate-enter delay-3">
-                    <div class="button-container btn-main">
-                        <button type="button" class="real-button" aria-label="Start now: see services and pricing" onclick="document.getElementById('services').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})"></button>
-                        <div class="button-border" aria-hidden="true">
-                            <div class="button">
-                                Start Now
-                                <div class="backdrop"></div>
-                                <div class="spin spin-blur"></div>
-                                <div class="spin spin-intense"></div>
-                                <div class="spin spin-inside"></div>
+                <div class="role-tags animate-enter delay-3">
+                    <span class="role-tag">Affiliate management</span>
+                    <span class="role-tag">Partner recruitment</span>
+                    <span class="role-tag">Lead generation</span>
+                    <span class="role-tag">Vibe-coding</span>
+                </div>
+
+                <div class="hero-actions animate-enter delay-4">
+                    <div class="cta-group">
+                        <div class="button-container btn-main">
+                            <button type="button" class="real-button" aria-label="See my work experience" onclick="document.getElementById('experience').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'})"></button>
+                            <div class="button-border" aria-hidden="true">
+                                <div class="button">
+                                    My Work
+                                    <div class="backdrop"></div>
+                                    <div class="spin spin-blur"></div>
+                                    <div class="spin spin-intense"></div>
+                                    <div class="spin spin-inside"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="btn-ghost"><span class="iconify" data-icon="uis:file-download-alt"></span> Download CV</a>
+                    <a href="#services" class="btn-ghost">Hire me as a consultant</a>
                 </div>
-
             </div>
 
             <div class="visual-container animate-enter delay-4">
@@ -456,82 +543,209 @@
             </div>
         </section>
 
+        <ul class="stats" aria-label="Career highlights">
+            <li class="stat"><strong>$658K</strong><span>Record annual affiliate revenue for Dux-Soup in 2023, with no paid ads</span></li>
+            <li class="stat"><strong>$0&rarr;$50K</strong><span>Monthly revenue grown for The Hair Diagram's program</span></li>
+            <li class="stat"><strong>2,100+</strong><span>Partners recruited and onboarded across platforms</span></li>
+            <li class="stat"><strong>$11.5K/mo</strong><span>Truely's global affiliate channel, built from scratch</span></li>
+        </ul>
+
         <section class="clients" aria-labelledby="clients-label">
             <span class="clients-label" id="clients-label">Affiliate programs I've managed</span>
             <ul class="client-list">
-                <li>Dux-Soup<small>SaaS · LinkedIn automation</small></li>
-                <li>RESimpli<small>SaaS · Real estate CRM</small></li>
-                <li>Teabloom<small>eCommerce · Tea</small></li>
-                <li>Truely<small>Travel tech · eSIM</small></li>
+                <li>Truely</li>
+                <li>Dux-Soup</li>
+                <li>The Hair Diagram</li>
+                <li>Teabloom</li>
+                <li>REsimpli</li>
+                <li>iFax</li>
+                <li>FillHQ</li>
             </ul>
         </section>
 
         <section id="about" class="section-padding scroll-hidden">
-            <h2 class="section-title">Meet <span>Nowfel</span></h2>
+            <h2 class="section-title">About <span>me</span></h2>
             <div class="about-grid">
                 <div>
                     <p class="bio-text">
-                        Hi, I’m Nowfel. A digital marketer and affiliate program strategist with over six years of experience helping SaaS, eCommerce, and lifestyle brands grow through performance-driven partnerships.
+                        I'm a performance-driven marketer with over 6 years in affiliate and partnership marketing. I've run programs end to end for SaaS and eCommerce brands: finding and recruiting partners, building lead pipelines, protecting margins with smarter attribution, and turning affiliates into a reliable revenue channel.
                     </p>
-                    <ul class="skills-list">
-                        <li><span class="iconify" data-icon="uis:check-circle"></span> Partner Recruitment & Relationship Building</li>
-                        <li><span class="iconify" data-icon="uis:check-circle"></span> Lead Generation & Market Research</li>
-                        <li><span class="iconify" data-icon="uis:check-circle"></span> Program Strategy, Optimization & Reporting</li>
-                        <li><span class="iconify" data-icon="uis:check-circle"></span> Content + Campaign Management</li>
-                        <li><span class="iconify" data-icon="uis:check-circle"></span> Team Development & Cross-Channel Collaboration</li>
+                    <p class="bio-text">
+                        Outside the day job I build things. Using AI as my coding partner, I've designed and shipped a travel comparison site, a prayer-times app, a movie picker for friends and a handful of browser games. It makes me faster at the technical side of marketing too: tracking, landing pages and tools.
+                    </p>
+                    <ul class="fact-list">
+                        <li><span class="iconify" data-icon="uis:graduation-cap"></span><div>BBA, Marketing<small>North South University, Bangladesh · 2021</small></div></li>
+                        <li><span class="iconify" data-icon="uis:comment-alt-message"></span><div>Bengali (native), English (fluent, IELTS 7.5), Hindi (spoken)</div></li>
+                        <li><span class="iconify" data-icon="uis:briefcase"></span><div>Affiliate Partnerships Manager at Truely Travel eSIM<small>Since May 2025</small></div></li>
                     </ul>
-                    <a href="https://calendly.com/nowfel" target="_blank" rel="noopener" style="color:var(--accent-green); text-decoration:none; font-weight:700; display:inline-flex; align-items:center; gap:5px;">
-                        Let's Connect on Calendly and book a session. <span class="iconify" data-icon="uis:arrow-right"></span>
-                    </a>
                 </div>
                 <div>
-                    <div style="margin-bottom: 1rem; color: #fff; font-weight:700; display:flex; align-items:center; gap:0.5rem;">
-                        <span class="iconify" data-icon="uis:wrench" style="color:var(--accent-green);"></span> Tech Stack
+                    <div class="skill-group">
+                        <h3>Affiliate platforms</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Impact</span><span class="tech-tag">ShareASale</span><span class="tech-tag">Awin</span><span class="tech-tag">CJ</span><span class="tech-tag">FirstPromoter</span><span class="tech-tag">Affise</span><span class="tech-tag">UpPromote</span><span class="tech-tag">Refersion</span><span class="tech-tag">ClickBank</span><span class="tech-tag">TikTok Shop</span>
+                        </div>
                     </div>
-                    <div class="tech-stack">
-                        <span class="tech-tag">Ahrefs</span>
-                        <span class="tech-tag">SEMrush</span>
-                        <span class="tech-tag">Ubersuggest</span>
-                        <span class="tech-tag">ShareASale</span>
-                        <span class="tech-tag">Affise</span>
-                        <span class="tech-tag">Impact</span>
-                        <span class="tech-tag">UpPromote</span>
-                        <span class="tech-tag">ClickBank</span>
-                        <span class="tech-tag">CJ</span>
-                        <span class="tech-tag">Refersion</span>
-                        <span class="tech-tag">FirstPromoter</span>
-                        <span class="tech-tag">HubSpot</span>
-                        <span class="tech-tag">Canva</span>
-                        <span class="tech-tag">ClickUp</span>
-                        <span class="tech-tag">SalesHandy</span>
-                        <span class="tech-tag">Google Workspace</span>
-                        <span class="tech-tag">Adobe Suite</span>
-                        <span class="tech-tag">TikTok Shop</span>
-                        <span class="tech-tag">ChatGPT</span>
-                        <span class="tech-tag">Sora</span>
+                    <div class="skill-group">
+                        <h3>Marketing, CRM &amp; research</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">HubSpot</span><span class="tech-tag">Salesforce</span><span class="tech-tag">Marketo</span><span class="tech-tag">Ahrefs</span><span class="tech-tag">SEMrush</span><span class="tech-tag">SalesHandy</span><span class="tech-tag">ClickUp</span><span class="tech-tag">Google Workspace</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <h3>Building &amp; AI</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Claude</span><span class="tech-tag">ChatGPT</span><span class="tech-tag">Gemini</span><span class="tech-tag">HTML / CSS / JS</span><span class="tech-tag">PWAs</span><span class="tech-tag">GitHub</span><span class="tech-tag">Vercel</span><span class="tech-tag">Netlify</span><span class="tech-tag">Canva</span><span class="tech-tag">Adobe Suite</span>
+                        </div>
                     </div>
 
                     <div class="personal-interests">
-                        <div class="interest-item">
-                            <span class="iconify" data-icon="uis:record-audio"></span>
-                            <span>DJing</span>
-                        </div>
-                        <div class="interest-item">
-                            <span class="iconify" data-icon="fluent:boxing-glove-24-filled"></span>
-                            <span>Kickboxing</span>
-                        </div>
-                        <div class="interest-item">
-                            <span class="iconify" data-icon="uis:plane-departure"></span>
-                            <span>Traveling</span>
-                        </div>
+                        <div class="interest-item"><span class="iconify" data-icon="uis:record-audio"></span><span>DJing</span></div>
+                        <div class="interest-item"><span class="iconify" data-icon="fluent:boxing-glove-24-filled"></span><span>Kickboxing</span></div>
+                        <div class="interest-item"><span class="iconify" data-icon="uis:plane-departure"></span><span>Traveling</span></div>
+                        <div class="interest-item"><span class="iconify" data-icon="mdi:gamepad-variant"></span><span>Gaming</span></div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <section id="experience" class="section-padding scroll-hidden">
+            <h2 class="section-title">Work <span>experience</span></h2>
+            <p class="section-subtitle">The highlights. The full detail is in my CV.</p>
+            <ol class="timeline">
+                <li class="job">
+                    <div class="job-head"><h3>Affiliate Partnerships Manager <span class="company">· Truely Travel eSIM</span></h3><time>May 2025 – Present</time></div>
+                    <ul>
+                        <li><b>Built the global affiliate network from scratch to $11,500/month</b> by sourcing 5,000+ qualified leads, using Ahrefs and intent-based keyword mapping to find top comparison sites, then running personalised outreach.</li>
+                        <li><b>Designed and launched a custom first-click attribution model</b> on the tracking platform, protecting margins by stopping cannibalisation with paid ads and cutting coupon fraud.</li>
+                    </ul>
+                </li>
+                <li class="job">
+                    <div class="job-head"><h3>Assistant Head of Affiliate Management <span class="company">· MonsterClaw LLC</span></h3><time>Nov 2024 – Jul 2025</time></div>
+                    <ul>
+                        <li>Managed multiple affiliate programs for SaaS and eCommerce clients, focused on execution and partner growth.</li>
+                        <li>Improved team workflows and reviewed team performance; raised engagement and ROI by scaling programs and managing strategic assets.</li>
+                    </ul>
+                </li>
+                <li class="job">
+                    <div class="job-head"><h3>Affiliate Partnerships Manager, multiple clients <span class="company">· Dux-Soup, The Hair Diagram, Teabloom, iFax, FillHQ, REsimpli</span></h3><time>2022 – 2025</time></div>
+                    <ul>
+                        <li><b>Grew The Hair Diagram from $0 to $50,000/month</b> and drove <b>Dux-Soup's record year ($658,645 in 2023)</b> without paid ads.</li>
+                        <li><b>Recruited and onboarded 2,100+ partners</b> across UpPromote, TikTok Shop, ShareASale, FirstPromoter, Impact and more.</li>
+                        <li>Built content strategies for blogs, YouTube, Instagram Reels and TikTok, and ran partner newsletters, educational articles and webinars.</li>
+                    </ul>
+                </li>
+                <li class="job">
+                    <div class="job-head"><h3>Sr. Digital Marketing Executive <span class="company">· MonsterClaw LLC</span></h3><time>Jul 2020 – Oct 2024</time></div>
+                    <ul>
+                        <li>Led project planning and management for many clients, plus lead generation and partnership nurturing.</li>
+                    </ul>
+                </li>
+                <li class="job">
+                    <div class="job-head"><h3>Jr. Client Relations Executive <span class="company">· Forethought PR</span></h3><time>Apr 2019 – Jan 2020</time></div>
+                    <ul>
+                        <li>Supported client relations for major accounts including Samsung and BRAC, with daily, monthly and annual PR performance reports.</li>
+                    </ul>
+                </li>
+            </ol>
+            <a href="/Nowfel-Ibn-Mizan-CV.pdf" download class="card-btn cv-cta"><span class="iconify" data-icon="uis:file-download-alt"></span> Download full CV (PDF)</a>
+        </section>
+
+        <section id="projects" class="section-padding scroll-hidden">
+            <h2 class="section-title">Things I've <span>built</span></h2>
+            <p class="section-subtitle">Websites, apps and games I've designed and shipped as a vibe-coder, with AI writing the code and me directing, designing and testing.</p>
+
+            <div class="filters" role="group" aria-label="Filter projects">
+                <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+                <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Websites</button>
+                <button type="button" class="filter-btn" data-filter="app" aria-pressed="false">Apps</button>
+                <button type="button" class="filter-btn" data-filter="game" aria-pressed="false">Games</button>
+            </div>
+
+            <div class="project-grid">
+                <article class="project" data-kind="web">
+                    <div class="thumb" style="background:linear-gradient(135deg,#0f766e,#1e3a8a);"><span class="iconify" data-icon="uis:map-marker"></span><span class="thumb-label">creatour.co</span><span class="status">Live</span></div>
+                    <div class="project-body">
+                        <div class="kind">Website · Founder</div>
+                        <h3>Creatour</h3>
+                        <p>A travel site that lets you compare travel creators' itineraries side by side, so you can plan a trip from the creators you trust.</p>
+                        <div class="chips"><span class="chip">Travel</span><span class="chip">Comparison</span><span class="chip">Vercel</span></div>
+                        <a class="project-link" href="https://creatour.co" target="_blank" rel="noopener">Visit site &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="app">
+                    <div class="thumb" style="background:linear-gradient(135deg,#1e1b4b,#b45309);"><span class="iconify" data-icon="mdi:moon-waning-crescent"></span><span class="thumb-label">PWA</span><span class="status">Live</span></div>
+                    <div class="project-body">
+                        <div class="kind">App · Installable web app</div>
+                        <h3>Qamar by Nowfel</h3>
+                        <p>A prayer-times app with GPS or city search, a prayer tracker with streaks, adhan alerts and illustrated story cards. Available in English, Bengali and Arabic.</p>
+                        <div class="chips"><span class="chip">PWA</span><span class="chip">3 languages</span><span class="chip">Offline-first</span></div>
+                        <a class="project-link" href="https://qamarbynowfel.netlify.app" target="_blank" rel="noopener">Open app &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="app">
+                    <div class="thumb" style="background:linear-gradient(135deg,#450a0a,#111);"><span class="iconify" data-icon="mdi:movie-open"></span><span class="thumb-label">Web app</span><span class="status">Invite-only</span></div>
+                    <div class="project-body">
+                        <div class="kind">App · For me and my friends</div>
+                        <h3>Tonight's Nightmare</h3>
+                        <p>A horror movie picker with filters, IMDb and Rotten Tomatoes ratings, a roulette for indecisive nights, and friend accounts with ratings and reviews that update live.</p>
+                        <div class="chips"><span class="chip">Logins</span><span class="chip">Live ratings</span><span class="chip">Netlify</span></div>
+                        <a class="project-link" href="https://tonightsnightmarebynowfel.netlify.app" target="_blank" rel="noopener">See login page &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="app">
+                    <div class="thumb" style="background:linear-gradient(135deg,#334155,#0f172a);"><span class="iconify" data-icon="uis:file-alt"></span><span class="thumb-label">Web app</span><span class="status soon">Coming soon</span></div>
+                    <div class="project-body">
+                        <div class="kind">App · Career tool</div>
+                        <h3>Nowfel's CV Maker</h3>
+                        <p>A CV builder with drag-and-drop layouts, LinkedIn PDF import, cover letters, ATS export, and an AI scanner that compares your CV with a job ad and finds skill gaps.</p>
+                        <div class="chips"><span class="chip">AI</span><span class="chip">PDF import</span><span class="chip">Job matching</span></div>
+                        <span class="project-link muted">Public release coming soon</span>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="game">
+                    <div class="thumb" style="background:linear-gradient(135deg,#be185d,#f59e0b);"><span class="iconify" data-icon="mdi:cat"></span><span class="thumb-label">Browser game</span><span class="status">Live</span></div>
+                    <div class="project-body">
+                        <div class="kind">Game · Virtual pet</div>
+                        <h3>Neko Pocket</h3>
+                        <p>A Tamagotchi-style pet cat game. Raise a kitten, decorate an isometric room, earn coins in mini-games, and keep your cat happy, or it might run away.</p>
+                        <div class="chips"><span class="chip">Pixel art</span><span class="chip">Mini-games</span><span class="chip">PWA</span></div>
+                        <a class="project-link" href="https://nekopocketbynowfel.netlify.app/" target="_blank" rel="noopener">Play now &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="game">
+                    <div class="thumb" style="background:linear-gradient(135deg,#14532d,#0e7490);"><span class="iconify" data-icon="mdi:chess-king"></span><span class="thumb-label">Roguelite</span><span class="status dev">In development</span></div>
+                    <div class="project-body">
+                        <div class="kind">Game · Strategy</div>
+                        <h3>Delta Kings</h3>
+                        <p>A roguelite kingdom builder on a river delta, with Bengali and Mughal flavour. Draw cards, build your kingdom and survive rival attacks for ten years. Browser demo first, then Steam.</p>
+                        <div class="chips"><span class="chip">Card game</span><span class="chip">Auto-battles</span><span class="chip">Steam planned</span></div>
+                        <span class="project-link muted">Demo in progress</span>
+                    </div>
+                </article>
+
+                <article class="project" data-kind="game">
+                    <div class="thumb" style="background:linear-gradient(135deg,#7c2d12,#1d4ed8);"><span class="iconify" data-icon="mdi:map-search"></span><span class="thumb-label">Board + browser</span><span class="status dev">In development</span></div>
+                    <div class="project-body">
+                        <div class="kind">Game · Board game</div>
+                        <h3>Dhaka Chase</h3>
+                        <p>A hide-and-chase board game set across a 303-stop map of Dhaka, with rickshaws, buses, metro, rail and water taxis. Includes a printed board and rulebook, a browser version and a map-builder tool.</p>
+                        <div class="chips"><span class="chip">Board game</span><span class="chip">Map builder</span><span class="chip">Rulebook</span></div>
+                        <span class="project-link muted">In playtesting</span>
+                    </div>
+                </article>
+            </div>
+            <p class="builder-note">Everything here was built with AI as my coding partner, including this website. I bring product thinking, design direction and a lot of testing.</p>
+        </section>
+
         <section id="services" class="section-padding scroll-hidden">
             <h2 class="section-title">Services <span>&amp; Pricing</span></h2>
-            <p class="section-subtitle">Clear scope, clear price. Pick a one-off project or hand over the whole program. You work with me directly, with no hand-offs to juniors.</p>
+            <p class="section-subtitle">Need help with an affiliate program? I take on consulting projects. Clear scope, clear price, and you work with me directly.</p>
 
             <div class="services-grid">
                 <article class="pricing-card featured">
@@ -670,8 +884,8 @@
             <h2 class="section-title">Industries I <span>know</span></h2>
             <p class="section-subtitle">Hands-on experience running programs in these markets.</p>
             <div class="industry-grid">
-                <div class="industry"><span class="iconify" data-icon="uis:window-grid"></span><h3>SaaS</h3><p>Recurring commissions, trial-to-paid tracking, and partners like reviewers, consultants and integration partners.</p><p class="proof">Dux-Soup · RESimpli</p></div>
-                <div class="industry"><span class="iconify" data-icon="uis:shopping-cart"></span><h3>eCommerce &amp; DTC</h3><p>Content creators, coupon and deal sites, and influencer partnerships for product brands.</p><p class="proof">Teabloom</p></div>
+                <div class="industry"><span class="iconify" data-icon="uis:window-grid"></span><h3>SaaS</h3><p>Recurring commissions, trial-to-paid tracking, and partners like reviewers, consultants and integration partners.</p><p class="proof">Dux-Soup · REsimpli · iFax</p></div>
+                <div class="industry"><span class="iconify" data-icon="uis:shopping-cart"></span><h3>eCommerce &amp; DTC</h3><p>Content creators, coupon and deal sites, and influencer partnerships for product brands.</p><p class="proof">Teabloom · The Hair Diagram</p></div>
                 <div class="industry"><span class="iconify" data-icon="uis:plane-departure"></span><h3>Travel tech</h3><p>Travel bloggers, comparison sites and creator partnerships for travel products and eSIMs.</p><p class="proof">Truely</p></div>
             </div>
         </section>
@@ -690,8 +904,14 @@
 
         <section id="contact" class="section-padding scroll-hidden">
             <h2 class="section-title" style="text-align:center;">Let's <span>Talk</span></h2>
+            <p class="section-subtitle" style="text-align:center; margin-left:auto; margin-right:auto;">Hiring for an affiliate or partnerships role, or need help with your program? Send a message or reach me directly.</p>
+            <div class="contact-alt">
+                <a href="mailto:nowfelibnmizan@gmail.com"><span class="iconify" data-icon="uis:envelope"></span> nowfelibnmizan@gmail.com</a>
+                <a href="https://www.linkedin.com/in/nowfel-ibn-mizan-73b88814a/" target="_blank" rel="noopener"><span class="iconify" data-icon="uis:linkedin"></span> LinkedIn</a>
+                <a href="/Nowfel-Ibn-Mizan-CV.pdf" download><span class="iconify" data-icon="uis:file-download-alt"></span> Download CV</a>
+            </div>
             <div class="form-wrapper">
-                <form action="https://formspree.io/f/nowfelibnmizan@gmail.com" method="POST">
+                <form id="contact-form" action="mailto:nowfelibnmizan@gmail.com" method="POST" data-endpoint="">
                     
                     <div class="form-group">
                         <label class="form-label" for="f-name">Name</label>
@@ -714,16 +934,18 @@
                             <option value="Retention Audit">Retention Audit (€2,300)</option>
                             <option value="Consultation">Strategy Consultation (€250/hr)</option>
                             <option value="Training">Affiliate Manager Training (custom)</option>
+                            <option value="Job opportunity">Job opportunity / recruiting</option>
                             <option value="Other">General inquiry</option>
                         </select>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label" for="f-message">Message</label>
-                        <textarea id="f-message" name="message" class="form-textarea" rows="4" placeholder="Tell me about your business goals..."></textarea>
+                        <textarea id="f-message" name="message" class="form-textarea" rows="4" placeholder="Tell me about the role or your program..."></textarea>
                     </div>
 
-                    <button type="submit" class="submit-btn">Send Inquiry</button>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
                 </form>
             </div>
         </section>
@@ -732,7 +954,7 @@
 
         <footer class="scroll-hidden">
             <div class="footer-logo">
-                <span class="iconify" data-icon="uis:analysis" style="color:var(--accent-green)"></span> NowfelNation
+                <span style="color:var(--accent-green)" aria-hidden="true">&#9679;</span> Nowfel Ibn Mizan
             </div>
             
             <div class="social-links">
@@ -753,7 +975,7 @@
                 </a>
             </div>
             
-            <p class="copyright">&copy; <span id="year">2025</span> NowfelNation. All Rights Reserved.</p>
+            <p class="copyright">&copy; <span id="year">2025</span> Nowfel Ibn Mizan. All rights reserved.</p>
         </footer>
 
     </div>
@@ -791,6 +1013,40 @@
         document.querySelectorAll('[data-package]').forEach((a) => a.addEventListener('click', () => {
             document.getElementById('f-package').value = a.dataset.package;
         }));
+
+        // Project filters
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach((btn) => btn.addEventListener('click', () => {
+            const f = btn.dataset.filter;
+            filterBtns.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+            document.querySelectorAll('.project').forEach((p) => { p.hidden = !(f === 'all' || p.dataset.kind === f); });
+        }));
+
+        // Contact form: posts to a form service when an endpoint is set,
+        // otherwise opens the visitor's email app with the message filled in.
+        const form = document.getElementById('contact-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const status = document.getElementById('form-status');
+            const d = new FormData(form);
+            const endpoint = form.dataset.endpoint;
+            if (endpoint) {
+                status.className = 'form-status'; status.textContent = 'Sending...';
+                try {
+                    const res = await fetch(endpoint, { method: 'POST', body: d, headers: { Accept: 'application/json' } });
+                    if (!res.ok) throw new Error();
+                    form.reset(); status.className = 'form-status ok'; status.textContent = 'Thanks, your message is on its way.';
+                } catch (err) {
+                    status.className = 'form-status err'; status.textContent = 'That did not send. Please email nowfelibnmizan@gmail.com instead.';
+                }
+                return;
+            }
+            const subject = `${d.get('package')} - message from ${d.get('name')}`;
+            const bodyText = `${d.get('message') || ''}\n\nName: ${d.get('name')}\nEmail: ${d.get('email')}\nTopic: ${d.get('package')}`;
+            window.location.href = `mailto:nowfelibnmizan@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+            status.className = 'form-status ok';
+            status.textContent = 'Your email app should open with the message ready to send. If it does not, email nowfelibnmizan@gmail.com.';
+        });
     </script>
 </body>
 </html>
